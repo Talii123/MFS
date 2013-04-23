@@ -1,0 +1,1088 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>My Fibrolamellar Story</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+        <!--<link class="jqueryUICss" type="text/css" rel="stylesheet" href="css/default/jquery-ui-1.8.23.custom.css" />-->
+        <link class="jqueryUICss" type="text/css" rel="stylesheet" href="css/default/jquery-ui-1.9.2.custom.css" />
+        <!--  <link type="text/css" rel="stylesheet" href="css/default/theme.css" />
+        <link id="appCss" type="text/css" rel="stylesheet" href="css/app.css" />-->
+        <link id="appCss" type="text/css" rel="stylesheet" href="css/timelineEditableApp.min.css" />
+        <link class="coloursCss" type="text/css" rel="stylesheet" href="css/default/colours.css" />              
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+        
+        <script>
+            disableUI = function($event) {                
+                $event.preventDefault();
+                alert("The app is not yet active.  Please wait a few moments - it will be ready very soon.");
+            };    
+
+        	var onFail = function(jqxhr, settings, exception) {
+                console.error("error happened while loading script: ", exception, "\njqxhr: ", jqxhr, "\nsettings: ", settings);
+            };
+            /*var onDone = function(script, textStatus) {
+            	console.log("done loading script; \ntextStatus=", textStatus, "\n script={\n", script, "\n}");
+            }*/
+            
+
+            // from jQuery website, with minor alteration that options override defaults
+            $.getCachedScript = function(url, options) {
+                // allow user to set any option except for dataType, cache, and url
+                    options = $.extend({
+                        dataType: "script",
+                        cache: true,
+                        url: url
+                    }, 
+                    options);
+                // Use $.ajax() since it is more flexible than $.getScript
+                // Return the jqXHR object so we can chain callbacks
+                return jQuery.ajax(options);
+            };              
+            $.getCachedScript("js/all-play-beta.js").fail(onFail).done(function() {                
+                $("#aboutCanvasDialog").dialog("open");                
+            });
+
+        </script>
+
+ 
+ 
+        <!--    BEGIN:  jQuery templates for formatting events      -->
+        <script id="patientNotesTemplate" type="text/x-jquery-tmpl">
+            <div id="patientNotesHeader">
+                <h3>In My Own Words:</h3>
+            </div>
+            <div id="patientNotesMain">
+                <div id="patientNotesNav" class="ui-widget ui-widget-content ui-corner-all">
+                    {{tmpl "#addChapterTabTemplate"}}                     
+                </div>
+                <div id="patientNotes">
+                    {{tmpl "#addChapterTextTemplate"}}
+                </div>
+            </div>
+        </script>
+
+        <script id="addChapterTabTemplate" type="text/x-jquery-tmpl">
+            {{each $data.chapters}}        
+                <!--<input type="checkbox" id="chapter${$index+$data.offset}" />-->
+                <input type="radio" id="chapter${$index+$data.offset}" name="chapter" /><label for="chapter${$index+$data.offset}">${clip($value.title, 12)}</label>
+            {{/each}}            
+        </script>
+
+        <script id="addChapterTextTemplate" type="text/x-jquery-tmpl">
+            {{each $data.chapters}}
+                <div id="chapter${$index+$data.offset}_text" class="chapter">
+                    <p>
+                        <!--${text}-->
+                        ${typeDetails.text.replace(/\n/g, "<br/>").replace(/\t/g, "")}
+                    </p>
+                </div>
+            {{/each}}            
+        </script> 
+
+        <script id="dummyTemplate" type="text/x-jquery-tmpl">
+            <h1>Dummy Data</h1>
+        </script>
+        <script id="notImplementedTemplate" type="text/x-jquery-tmpl">
+            <!--<p>Oops!! This event type has not been implemented yet.</p>-->
+        </script>        
+<!--
+    I used this one successfully when I was passing in event._obj rather than event
+    <span class="date">${dateFormat(start, "longDate")}</span>
+-->
+
+        <!-- doesn't work; having trouble passing in a function to the template -->
+        <script id="debugTemplate" type="text/x-jquery-tmpl">
+            <div>
+                <h3>Debug Template</h3>
+                <p> data.getDebugJSON() = ${$data.getDebugJSON()} </p>
+                <p> data.getDebugJSON() = ${$data.getDebugJSON($data.getProperty("typeDetails"))} </p>
+            </div>
+        </script>
+
+        <script id="eventDataTemplate" type="text/x-jquery-tmpl">            
+            <li id="${$data.getID()}" class="event">
+                {{tmpl "#eventControlsTemplate"}}
+                <h3 class="eventTitle"><a href="${$data.getID()}">${_text}</a></h3>
+                
+                <div class="eventContent">   
+                    {{tmpl "#dateRangeTemplate"}}
+                    {{html $item.html($data.getProperty("typeDetails")) }}
+                    {{tmpl "#commonEventDataTemplate"}}
+                </div>
+                <br/>
+            </li>
+        </script>
+
+        <script id="eventControlsTemplate" type="text/x-jquery-tmpl">
+            <div class="eventControls"><span class="button deleteEventTrigger">&#x2716;</span></div>
+        </script>
+
+        <script id="dateRangeTemplate" type="text/x-jquery-tmpl">
+            {{if $data.getEnd() && new Date($data.getEnd()).getDate() != new Date($data.getStart()).getDate() }}
+                Started: <span class="date started">${dateFormat($data.getStart(), "longDate")}</span>
+                <br/>
+                Ended: <span class="date ended">${dateFormat($data.getEnd(), "longDate")}</span>
+                <br/>
+            {{else}}
+                Performed: <span class="date performed">${dateFormat($data.getStart(), "longDate")}</span>
+                <br/>
+            {{/if}}
+
+            {{if $data.getProperty("duration")}}
+                Duration: <span class="duration">${$data.getProperty("duration")}</span>
+                <br/>
+            {{/if}}
+        </script>        
+
+
+        <script id="commonEventDataTemplate" type="text/x-jquery-tmpl">
+            {{if $data.getProperty("result")}}
+                Result: <span class="result">${$data.getProperty("result")}</span><br/>
+            {{/if}}
+
+            {{if $data.getProperty("sideEffects")}}
+                <div>
+                    <br/>
+                    Side Effects: <br/><br/>
+                    <div class="sideEffects">
+                        <ol>
+                            {{each $data.getProperty("sideEffects")}}
+                                <li>${$value}</li>
+                            {{/each}}
+                        </ol>
+                    </div>
+                <div>
+                <br/>
+            {{/if}} 
+
+            {{if $data.getProperty("recommended")}}
+            Do I Recommend this Treatment? <span class="recommendation">${$data.getProperty("recommended")}</span><br/>
+            {{/if}}            
+
+            <!--
+            {{if $data.getProperty("pDescription")}}
+                <div>
+                    <br/>
+                    Description: <br/>
+                    <div class="description">
+                        <p>{{html $data.getProperty("pDescription").replace(/(\n)+/g, "</p><p>").replace(/\t/g, "") }}
+                        </p>
+                    </div>
+                </div>
+            {{/if}}
+            -->  
+
+            {{if $data._description}}
+                <hr />
+                <div>
+                    <br/>
+                    Details: <br/>
+                    <div class="description">
+                        <p>{{html $data._description.replace(/(\n)+/g, "</p><p>").replace(/\t/g, "") }}
+                        </p>
+                    </div>
+                </div>
+            {{/if}}                    
+            <br/>
+
+        </script>        
+
+        <script id="surgeryDetailsTemplate" type="text/x-jquery-tmpl">
+            {{wrap "#eventDataTemplate"}}
+                <div>
+                {{if $data.getProperty("surgeon") }}
+                Surgeon: <span class="doctor surgeon">${$data.getProperty("surgeon")}</span><br/>
+                {{/if}}
+
+                {{if $data.getProperty("fellow") }}
+                Fellow: <span class="doctor fellow">${$data.getProperty("fellow")}</span><br/>
+                {{/if}}
+
+                <!--{{if $data.getProperty("resident") }}
+                    {{each $data.getProperty("resident")}}
+                        Resident: <span class="doctor resident">${$value}</span><br/>
+                    {{/each}}
+                {{/if}} -->
+
+                {{if $data.getProperty("physicianAssistant") }}
+                Physician&apos;s Assistant: <span class="physicianAssistant">${$data.getProperty("physicianAssistant")}</span><br/>
+                {{/if}}
+
+                {{if $data.getProperty("hospital") }}
+                Hospital: <span class="hospital">${$data.getProperty("hospital")}</span><br/>
+                {{/if}}
+
+                {{if $data.getProperty("location") }}
+                Location: <span class="location">${$data.getProperty("location")}</span><br/>
+                {{/if}}
+
+                {{if $data.getProperty("recoveryTimeHospital") }}                    
+                Recovery time in hospital: <span class="recoveryTimeHospital">${$data.getProperty("recoveryTimeHospital")}</span><br/>
+                {{/if}}
+
+                {{if $data.getProperty("recoveryTimeHome") }}                    
+                Recovery time at home: <span class="recoveryTime">${$data.getProperty("recoveryTimeHome")}</span><br/>
+                {{/if}}                
+                </div>
+            {{/wrap}}
+        </script>
+
+        <script id="chemoDetailsTemplate" type="text/x-jquery-tmpl">
+            {{wrap "#eventDataTemplate"}}
+                <div>
+                {{if $data.getProperty("chemo") }}
+                    Chemotherapy: <span class="chemo">{{= $data.getProperty("chemo") }}</span>
+                    <br/>
+                {{/if}}
+                </div>            
+                <div>
+                {{if $data.getProperty("oncologist") }}
+                    Oncologist: <span class="oncologist chemo">{{= $data.getProperty("oncologist") }}</span>
+                    <br/>
+                {{/if}}
+                </div>
+            {{/wrap}}
+        </script>
+
+        <script id="radiationDetailsTemplate" type="text/x-jquery-tmpl">
+            {{wrap "#eventDataTemplate"}}
+
+                <div>
+                {{if $data.getProperty("oncologist") }}
+                    Oncologist: <span class="oncologist chemo">{{= $data.getProperty("oncologist") }}</span>
+                    <br/>
+                {{/if}}
+                </div> 
+
+            {{/wrap}}           
+        </script>
+
+        <script id="immunoDetailsTemplate" type="text/x-jquery-tmpl">
+            {{tmpl "#eventDataTemplate"}}
+        </script>        
+
+        <script id="testDetailsTemplate" type="text/x-jquery-tmpl">
+            {{wrap "#eventDataTemplate"}}
+
+                <div>
+                {{if $data.getProperty("testType") }}
+                    Test type: <span class="testtype">{{= {"CT_SCAN" : "CT scan", "MRI" : "MRI", "ULTRASOUND" : "Ultrasound"}[$data.getProperty("testType")] }}</span>
+                    <br/>
+                {{/if}}
+                </div>  
+
+            {{/wrap}}          
+        </script>    
+
+        <script id="diagnosisDetailsTemplate" type="text/x-jquery-tmpl">
+            <li id="${$data.getID()}" class="event">
+                {{tmpl "#eventControlsTemplate"}}
+                <h3 class="eventTitle"><a href="${$data.getID()}">${_text}</a></h3>
+                <div class="eventContent">          
+                    Diagnosed on: <span class="date">${dateFormat($data.getStart(), "longDate")}</span> {{if $data.getProperty("age") }} at age: {{= $data.getProperty("age") }} {{/if}}
+                    <br/>
+                    {{if $data.getProperty("stage")}}
+                        Stage: {{= $data.getProperty("stage") }}
+                        <br/>
+                    {{/if}}
+
+                    <!-- no longer used
+                    {{if $data.hasProperty("metastatic") }}
+                        Metastatic? {{= $data.getProperty("metastatic") }}
+                        <br/>
+                    {{/if}}
+
+                    {{if $data.hasProperty("lymphNodes") }}
+                        Enlarged Lymph Nodes? {{= $data.getProperty("lymphNodes") }}
+                        <br/>
+                    {{/if}}
+
+                    {{if $data.hasProperty("majorVascularInvasion") }}
+                        Invasion of Major Blood Vessels? {{= $data.getProperty("majorVascularInvasion") }}
+                        <br/>
+                    {{/if}} 
+                    
+                    {{if $data.hasProperty("microVascularInvasion") }}
+                        Microscopic Vascular Invasion? {{= $data.getProperty("microVascularInvasion") }}
+                        <br/>
+                    {{/if}} 
+                    -->
+
+                    {{if $data.hasProperty("diseaseSites")}}
+                            <br/>
+                            Disease Locations: <br/><br/>
+                            <div class="diseaseSites">
+                                <ol>
+                                    {{each $data.getProperty("diseaseSites")}}
+                                        <li>${$value}</li>
+                                    {{/each}}
+                                </ol>
+                            </div>
+                            <br/>
+                    {{/if}}                     
+
+                    {{if $data._description}}
+                        <hr />
+                        <div>
+                            <br/>
+                            Details: <br/>
+                            <div class="description">
+                                <p>{{html $data._description.replace(/(\n)+/g, "</p><p>").replace(/\t/g, "") }}
+                                </p>
+                            </div>
+                        </div>
+                    {{/if}}                    
+                    <br/>
+                </div>
+            </li>
+        </script>
+        <!--    END:  jQuery templates for formatting events      -->
+
+        <!--    BEGIN:  jQuery Templates for input forms       -->
+        <script id="dateRangeInputTemplate" type="text/x-jquery-tmpl">
+            <label for="{{= prefix}}Start{{= suffix}}">Started: </label>
+            <input id="{{= prefix}}Start{{= suffix}}" type="text" name="start" class="startDate required date" /><br/>
+            <label for="{{= prefix}}End{{= suffix}}">Ended: </label>
+            <input id="{{= prefix}}End{{= suffix}}" type="text" name="end" class="endDate date" /><br/>
+
+            <!--<tr>
+            <td>Started:</td><td><input type="text" name="start" class="startDate required date" /></td>
+            </tr>
+            <tr>
+            <td>Ended: </td><td><input type="text" name="end" class="endDate required date" /></td>-->
+        </script>
+
+        <script id="singleDateInputTemplate" type="text/x-jquery-tmpl">
+            <label for="{{= prefix}}Start{{= suffix}}" >Performed On: </label>
+            <input id="{{= prefix}}Start{{= suffix}}" type="text" name="start" class="onDate required date" />
+            <br/>
+
+            <!-- TODO: add support for calculating durations during input -->
+            {{if $data.getProperty("duration")}}
+                Duration: <span class="duration">${$data.getProperty("duration")}</span>
+                <br/>
+            {{/if}}
+        </script> 
+
+        <script id="trinarySelectTemplate" type="text/x-jquery-tmpl">
+            <label for="{{= prefix}}{{= selectBaseId}}{{= suffix}}">{{= selectLabel}} </label>
+            <select id="{{= prefix}}{{= selectBaseId}}{{= suffix}}" name="{{= selectName}}">
+                <option value="UNKNOWN">Not Sure</option>
+                <option value="false">NO</option>
+                <option value="true">YES</option>
+            </select>
+            <br/>
+        </script>
+
+        <script id="surgeryResultsEventTemplate" type="text/x-jquery-tmpl">
+            <hr />
+            <h3>Results: </h3>
+            <div class="results">
+                <input type="radio" name="result" value="ALL" id="{{= prefix}}resultALL{{= suffix}}">
+                <label for="{{= prefix}}resultALL{{= suffix}}">All of the cancer was removed.</label>
+                <br/>
+
+                <input type="radio" name="result" value="SOME" id="{{= prefix}}resultSOME{{= suffix}}">
+                <label for="{{= prefix}}resultSOME{{= suffix}}">Some of the cancer was removed</label>
+                <br/>
+
+                <input type="radio" name="result" value="NONE" id="{{= prefix}}resultNONE{{= suffix}}">
+                <label for="{{= prefix}}resultNONE{{= suffix}}">None of the cancer was remvoed</label>
+                <br/>
+            </div>
+
+            {{tmpl "#commonEventDataInputTemplate"}}
+        </script>
+
+        <script id="chemoResultsEventTemplate" type="text/x-jquery-tmpl">
+            <hr />
+            <h3>Results: </h3>
+            <div class="results">
+                <input type="radio" name="result" value="CR" id="{{= prefix}}resultCR{{= suffix}}">
+                <label for="{{= prefix}}resultCR{{= suffix}}">Remission - no sign of cancer after the treatment</label>
+                <br/>
+
+                <input type="radio" name="result" value="PR1" id="{{= prefix}}resultPR1{{= suffix}}">
+                <label for="{{= prefix}}resultPR1{{= suffix}}">Some spots got smaller, others stayed the same</label>
+                <br/>
+
+                <input type="radio" name="result" value="PR2" id="{{= prefix}}resultPR2{{= suffix}}">
+                <label for="{{= prefix}}resultPR2{{= suffix}}">Some spots got smaller, but others got bigger</label>
+                <br/>
+
+                <input type="radio" name="result" value="SD" id="{{= prefix}}resultSD{{= suffix}}">
+                <label for="{{= prefix}}resultSD{{= suffix}}">No Change</label>
+                <br/>
+
+                <input type="radio" name="result" value="PD" id="{{= prefix}}resultPD{{= suffix}}">
+                <label for="{{= prefix}}resultPD{{= suffix}}">All spots stayed the same or got worse</label>
+                <br/>
+
+                <input type="radio" name="result" value="DK" id="{{= prefix}}resultDK{{= suffix}}">
+                <label for="{{= prefix}}resultDK{{= suffix}}">Not sure</label>
+                <br/>
+            </div>
+            <!--
+            <label for="{{= prefix}}Result{{= suffix}}" >Result: </label>
+            <select id="{{= prefix}}Result{{= suffix}}" name="result">
+                <option value="UNKNOWN">Not Sure</option>
+                <option></option>
+                <option>II</option>
+                <option>III</option>
+                <option>IV</option>
+            </select>
+            -->
+
+           <!--
+            <input id="{{= prefix}}Result{{= suffix}}" name="result" type="text" class="result" />
+            <div>
+                <br/>
+                Side Effects: <br/><br/>
+                <div class="sideEffects">
+                    <ol>
+                        {{each $data.getProperty("sideEffects")}}
+                            <li>${$value}</li>
+                        {{/each}}
+                    </ol>
+                </div>
+            <div>
+            <label for="{{= prefix}}Result{{= suffix}}">Do You believe this treatment was effective? </label>
+             <input id="{{= prefix}}Result{{= suffix}}" name="recommended" type="text" class="recommendation" size="5em" /><br/> 
+              -->            
+
+              {{tmpl "#commonEventDataInputTemplate"}}
+        </script>
+
+       <!-- <script id="commonTreatmentEventTemplate" type="text/x-jquery-tmpl">
+            {{tmpl "#commonEventDataInputTemplate"}}        
+
+            {{tmpl "#recommendationsTemplate"}}
+
+        </script>-->
+
+        <script id="recommendationsTemplate" type="text/x-jquery-tmpl">        
+            <div class="recommendations">
+                {{tmpl($.extend($data, {
+                    "selectBaseId"  :   "recommended", 
+                    "selectName"    :   "recommended",
+                    "selectLabel"   :   "Do you recommend this treatment?"
+                })) "#trinarySelectTemplate"}}
+            </div>
+        </script>
+
+        <script id="descriptionTemplate" type="text/x-jquery-tmpl">
+            <hr />
+            <div>
+                <label for="{{= prefix}}Description{{= suffix}}">Description </label>
+                <textarea id="{{= prefix}}Description{{= suffix}}" name="description" rows="5"></textarea>
+            </div>  
+        </script>
+
+        <script id="commonEventDataInputTemplate" type="text/x-jquery-tmpl">
+            {{tmpl "#recommendationsTemplate"}}
+            {{tmpl "#descriptionTemplate"}}
+        </script>         
+
+        <script id="addEventFormControlsTemplate" type="text/x-jquery-tmpl">
+            <a href="/add{{= eventType[0]}}EventForm" class="addEventFormLink {{= eventType[1]}}">Add {{= eventType[1]}}</a>
+            <button class="cancelButton {{= eventType[1]}}" style="display:none">Cancel</button><br/>
+        </script>
+
+        <script id="modifyChaptersControlsTemplate" type="text/x-jquery-tmpl">
+            <div class="modifyChaptersControls"> 
+                <a href="/addChapterForm" class="addEventFormLink">Add Chapter</a>
+                <button class="cancelButton" style="display:none">Cancel</button>
+                <a href="/deleteChapter" class="deleteEventTrigger">Delete Chapter</a>
+            </div>
+        </script>        
+
+        <script id="addEventFormTemplate" type="text/x-jquery-tmpl">
+            <!--{{tmpl "#addEventFormControlsTemplate"}}-->
+            <form class="addEventForm {{= eventType[0]}}" style="display: none">
+                <fieldset>
+                    <legend>Add {{= eventType[1]}}</legend>
+
+                    <input id="newEventTitle{{= suffix}}" name="title" type="text" class="required" />
+
+                    <div class="newEventContent">
+                        <input type="hidden" id="newEventType" name="type" value="{{= eventType[2]}}" />
+                        
+                        <!--<label for="newEventTitle{{= suffix}}">Title </label><input id="newEventTitle{{=suffix}}" name="title" type="text" /><br/>-->
+
+                        <!--
+                        // add a "prefix" property to the template data - e.g. 
+                        // prefix="newChemo" or prefix="newDiagnosis" ...
+                        -->
+                        {{tmpl($.extend($data, {"prefix" : "new" + $data.eventType[0] })) "#add"+eventType[0]+"FormDetailsTemplate"}}
+
+                        <br/>
+                        <input id="add{{= eventType[0]}}Event" class="addEvent" type="submit" value="Add {{= eventType[1]}}"/><br/>
+                    </div>
+                </fieldset>
+            </form>
+        </script>
+
+
+        <script id="addChapterFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="-1" />
+
+            <div style="display: inline-block; float: left">
+                <label for="{{= prefix}}Start{{= suffix}}">Started:</label>
+                <input id="{{= prefix}}Start{{= suffix}}" type="text" name="start" class="startDate required date" style="z-index: 9999" />
+            </div>
+            <div id="endDateDiv" style="display: inline-block">            
+                <label for="{{= prefix}}End{{= suffix}}">Ended:</label>
+                <input id="{{= prefix}}End{{= suffix}}" type="text" name="end" class="endDate required date" />
+            </div>
+            <br/>
+            <label for="{{= prefix}}Description{{= suffix}}">Chapter </label><br/>
+            <!--
+             -- replace "description" which is an optional attribute of all events on the backend with "text" which is a required type detail of chapters -->
+            <!--<textarea id="{{= prefix}}Description{{= suffix}}" name="description" rows="5" class="required"></textarea><br/>-->
+            <textarea id="{{= prefix}}Description{{= suffix}}" name="text" rows="5" class="required"></textarea><br/>
+        </script>        
+
+        <script id="addChapterFormTemplate" type="text/x-jquery-tmpl">
+            <form class="addEventForm Chapter" style="display: none">
+                <input type="hidden" name="typeIndex" value="-1" />
+                <fieldset>
+                    <legend>Add Chapter</legend>
+
+                    <div class="newEventContent">
+                        <input type="hidden" id="newEventType" name="type" value="CHAPTER" />
+                        <!--
+                        // add a "prefix" property to the template data - e.g. 
+                        // prefix="newChemo" or prefix="newDiagnosis" ...
+                        -->
+
+                        <div class="slidingBox">
+                            <div class="formPart">
+
+                                <input id="newEventTitle{{= suffix}}" name="title" type="text" class="required" />
+
+                                {{tmpl($.extend($data, {"prefix" : "newChapter"})) "#addChapterFormPar1Template"}}
+
+                                <div class="formPartButtons">
+                                    <input type="button" class="nextFormPartButton" value="Next" />
+                                </div>
+                            </div>
+
+                            <div class="formPart">
+                                {{tmpl($.extend($data, {"prefix" : "newChapter"})) "#addChapterFormPar2Template"}}
+
+                                <div class="formPartButtons">
+                                    <input type="button" class="prevFormPartButton" value="Previous" />
+                                    <!-- <input type="button" class="nextFormPartButton" value="Next" />-->
+                                    <input id="addChapterEvent" class="addEvent" type="submit" value="Add Chapter"/>
+                                </div>
+                            </div> 
+                        </div>                       
+                    </div>
+                </fieldset>
+            </form>
+        </script>        
+
+        <script id="addChapterFormPar1Template" type="text/x-jquery-tmpl">
+            <div style="display: inline-block; float: left">
+                <label for="{{= prefix}}Start{{= suffix}}">Started: </label>
+                <input id="{{= prefix}}Start{{= suffix}}" type="text" name="start" class="startDate required date" style="z-index: 9999" />
+            </div>
+            <div id="endDateDiv" style="display: inline-block">            
+                <label for="{{= prefix}}End{{= suffix}}">Ended: </label>
+                <input id="{{= prefix}}End{{= suffix}}" type="text" name="end" class="endDate required date" />
+            </div>
+        </script>
+
+        <script id="addChapterFormPar2Template" type="text/x-jquery-tmpl">        
+            <label for="{{= prefix}}Description{{= suffix}}">Chapter </label><br/>
+            <textarea id="{{= prefix}}Description{{= suffix}}" name="description" rows="5"></textarea> 
+        </script>
+
+        <script id="addNewChapterTabTemplate" type="text/x-jquery-tmpl">
+            <label id="l_{{= tabTitleID}}"><input id="{{= tabTitleID}}" type="text" name="tabTitle" class="required maxLength-15 ui-button ui-widget ui-corner-all" /></label>
+        </script>        
+ 
+        <script id="addDiagnosisFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="0" />
+            <!--<input type="hidden" name="icon" value="/images/diagnosis_40_40.jpg"/>-->
+
+            <label for="{{= prefix}}Start{{= suffix}}" >Diagnosed on: </label>
+            <input id="{{= prefix}}Start{{= suffix}}" name="start" type="text" class="onDate required date"/> <!-- temporary --><br/>
+            <label for="{{= prefix}}Stage{{= suffix}}">at age: </label>
+            <input type="text" name="age" id="{{= prefix}}Stage{{= suffix}}" maxlength="3" size="2em" class="number"/>
+            <br/>
+
+            <label for="{{= prefix}}Stage{{= suffix}}" >Stage: </label>
+            <select id="{{= prefix}}Stage{{= suffix}}" name="stage">
+                <option value="UNKNOWN">Not Sure</option>
+                <option>I</option>
+                <option>II</option>
+                <option>III</option>
+                <option>IV</option>
+            </select>
+            
+            <h3>Where did you have this cancer?</h3>
+            <label for="{{= prefix}}DiseaseSitesLiver{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Liver" id="{{= prefix}}DiseaseSitesLiver{{= suffix}}"/> Liver</label>
+            
+
+            <label for="{{= prefix}}DiseaseSitesLymphNodes{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Lymph Nodes" id="{{= prefix}}DiseaseSitesLymphNodes{{= suffix}}"/> Lymph Nodes</label>
+            
+
+            <label for="{{= prefix}}DiseaseSitesPortalVein{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Portal Vein" id="{{= prefix}}DiseaseSitesPortalVein{{= suffix}}"/> Portal Vein</label>
+            
+
+            <label for="{{= prefix}}DiseaseSitesBileDuct{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Bile Duct" id="{{= prefix}}DiseaseSitesBileDuct{{= suffix}}"/> Bile Duct</label>
+            
+
+            <label for="{{= prefix}}DiseaseSitesGallBladder{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Gall Bladder" id="{{= prefix}}DiseaseSitesGallBladder{{= suffix}}"/> Gall Bladder</label>
+                                    
+
+            <label for="{{= prefix}}DiseaseSitesLungs{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Lungs" id="{{= prefix}}DiseaseSitesLungs{{= suffix}}"/> Lungs</label>
+                        
+
+            <label for="{{= prefix}}DiseaseSitesAbdomen{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Abdomen" id="{{= prefix}}DiseaseSitesAbdomen{{= suffix}}"/> Abdomen</label>
+            
+
+            <label for="{{= prefix}}DiseaseSitesPeritoneum{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Peritoneum" id="{{= prefix}}DiseaseSitesPeritoneum{{= suffix}}"/> Peritoneum</label>
+            
+
+            <label for="{{= prefix}}DiseaseSitesDiaphragm{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Diaphragm" id="{{= prefix}}DiseaseSitesDiaphragm{{= suffix}}"/> Diaphragm</label>
+                        
+
+            <label for="{{= prefix}}DiseaseSitesOther{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="other" id="{{= prefix}}DiseaseSitesOther{{= suffix}}"/> Other</label>
+            <br/>
+            
+            <!--<div class="diseaseSites">
+                <ol>
+                    {{each $data.getProperty("diseaseSites")}}
+                        <li>${$value}</li>
+                    {{/each}}
+                </ol>
+            </div>-->
+    
+
+            <!--   DO WE WANT TO KEEP SEPARATION BETWEEN pDescription and description?
+            {{if $data.getProperty("description")}}
+                <div>
+                    <br/>
+                    <label for="{{= prefix}}Description{{= suffix}}">Details: </label><br/>
+                    <div class="description">
+                        <p>{{html $data.getProperty("description").replace(/(\n)+/g, "</p><p>").replace(/\t/g, "") }}
+                        </p>
+                    </div>
+                </div>
+            {{/if}}                    
+            <br/>-->
+
+            {{tmpl "#descriptionTemplate"}}
+        </script>
+
+        <script id="oldAddDiagnosisFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="0" />
+            <!--<input type="hidden" name="icon" value="/images/diagnosis_40_40.jpg"/>-->
+
+            <label for="{{= prefix}}Start{{= suffix}}" >Diagnosed on: </label>
+            <input id="{{= prefix}}Start{{= suffix}}" name="start" type="text" class="onDate required date"/> <!-- temporary --><br/>
+            <label for="{{= prefix}}Stage{{= suffix}}">at age: </label>
+            <input type="text" name="age" id="{{= prefix}}Stage{{= suffix}}" maxlength="3" size="2em" class="number"/>
+            <br/>
+
+            <label for="{{= prefix}}Stage{{= suffix}}" >Stage: </label>
+            <select id="{{= prefix}}Stage{{= suffix}}" name="stage">
+                <option value="UNKNOWN">Not Sure</option>
+                <option>I</option>
+                <option>II</option>
+                <option>III</option>
+                <option>IV</option>
+            </select>
+            
+            <h3>Did you have... </h3>
+           <!--<label for="{{= prefix}}Metastatic{{= suffix}}">Metastases ("Mets") </label>
+            <input id="{{= prefix}}Metastatic{{= suffix}}" type="checkbox" name="metastatic"/>
+            <br/>-->
+            {{tmpl($.extend($data, {
+                "selectBaseId"  :   "Metastatic", 
+                "selectName"    :   "metastatic",
+                "selectLabel"   :   "Metastases (\"Mets\")"
+            })) "#trinarySelectTemplate"}}
+            <!--            
+            <label for="{{= prefix}}LymphNodes{{= suffix}}">Enlarged Lymph Nodes? </label>
+            <input id="{{= prefix}}LymphNodes{{= suffix}}" type="checkbox" name="lymphNodes"/>
+            <br/>
+            -->
+
+            {{tmpl($.extend($data, {
+                "selectBaseId"  :   "LymphNodes", 
+                "selectName"    :   "lymphNodes",
+                "selectLabel"   :   "Tumor in your Lymph Nodes?"
+            })) "#trinarySelectTemplate"}}
+
+            <!--
+            <label for="{{= prefix}}MajorVascularInvasion{{= suffix}}">Tumor in Major Blood Vessels?</label>
+            <input id="{{= prefix}}MajorVascularInvasion{{= suffix}}" type="checkbox" name="majorVascularInvasion"/>
+            <br/>
+            -->
+
+            {{tmpl($.extend($data, {
+                "selectBaseId"  :   "MajorVascularInvasion", 
+                "selectName"    :   "majorVascularInvasion",
+                "selectLabel"   :   "Tumor in Major Blood Vessels?"
+            })) "#trinarySelectTemplate"}}
+
+
+            <!--<label for="{{= prefix}}MicroVascularInvasion{{= suffix}}">Microscopic Vascular Invasion? </label>
+            <input id="{{= prefix}}MicroVascularInvasion{{= suffix}}" type="checkbox" name="microVascularInvastion"/>
+            <br/>-->
+
+            {{tmpl($.extend($data, {
+                "selectBaseId"  :   "MicroVascularInvasion", 
+                "selectName"    :   "microVascularInvasion",
+                "selectLabel"   :   "Microscopic Vascular Invasion? "
+            })) "#trinarySelectTemplate"}}
+
+
+            <!--    NOT IMPLEMENTING YET
+                    Sites of Disease: <br/><br/>
+                    <div class="diseaseSites">
+                        <ol>
+                            {{each $data.getProperty("diseaseSites")}}
+                                <li>${$value}</li>
+                            {{/each}}
+                        </ol>
+                    </div>
+                    <br/>-->
+
+            <!--   DO WE WANT TO KEEP SEPARATION BETWEEN pDescription and description?
+            {{if $data.getProperty("description")}}
+                <div>
+                    <br/>
+                    <label for="{{= prefix}}Description{{= suffix}}">Details: </label><br/>
+                    <div class="description">
+                        <p>{{html $data.getProperty("description").replace(/(\n)+/g, "</p><p>").replace(/\t/g, "") }}
+                        </p>
+                    </div>
+                </div>
+            {{/if}}                    
+            <br/>-->
+
+            {{tmpl "#commonEventDataInputTemplate"}}
+        </script>
+
+        <script id="addSurgeryFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="1" />
+            <!--<input type="hidden" name="icon" value="/images/surgery_40_40.jpg"/>-->
+
+            {{tmpl "#singleDateInputTemplate"}}
+            
+            <label for="{{= prefix}}Surgeon{{= suffix}}">Surgeon: </label>
+            <input id="{{= prefix}}Surgeon{{= suffix}}" type="text" name="surgeon" class="doctor surgeon name" /><br/>                
+
+            <label for="{{= prefix}}Hospital{{= suffix}}">Hospital: </label>
+            <input id="{{= prefix}}Hospital{{= suffix}}" type="text" name="hospital" class="hospital" /><br/>
+            <label for="{{= prefix}}Location{{= suffix}}">Location: </label>
+            <input id="{{= prefix}}Location{{= suffix}}" type="text" name="location" class="location" /><br/>
+            
+            <hr />
+            <label>Recovery time:</label><br/>
+            <label for="{{= prefix}}RecoveryTimeHospital{{= suffix}}">  * in hospital: </label>
+            <input "{{= prefix}}RecoveryTimeHospital{{= suffix}}" type="text" name="recoveryTimeHospital" class="recoveryTimeHospital"  />
+            <br/>
+
+
+            <!--
+                /* TOO COMPLICATED FOR NOW  */            
+            <div class="recovery">
+                <input "{{= prefix}}RecoveryTimeHospital{{= suffix}}" type="text" name="recoveryTimeHospital" class="recoveryTimeHospital"  />
+                <select class="timeUnitsSelect">
+                    <option>days</option>
+                    <option>weeks</option>
+                    <option>months</option>             
+                </select>
+            </div>
+            <br/>
+            -->
+
+            <label for="{{= prefix}}RecoveryTimeHome{{= suffix}}">  * at home: </label>
+            <input id="{{= prefix}}RecoveryTimeHome{{= suffix}}" type="text" name="recoveryTimeHome" class="recoveryTime" />
+            
+
+            <!--
+                /* TOO COMPLICATED FOR NOW  */
+            <div class="recovery">
+                <input id="{{= prefix}}RecoveryTimeHome{{= suffix}}" type="text" name="recoveryTimeHome" class="recoveryTime" />            
+                <select class="timeUnitsSelect">
+                    <option>days</option>
+                    <option>weeks</option>
+                    <option>months</option>             
+                </select>
+            </div>
+            <br/>
+            -->
+
+            {{tmpl "#surgeryResultsEventTemplate"}}                     
+        </script>
+                    
+        <script id="addChemoFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="2" />
+            <!--<input type="hidden" name="icon" value="/images/chemo_40_40.jpg"/>-->
+
+            {{tmpl "#dateRangeInputTemplate"}}
+
+            <div>
+                <label for="{{= prefix}}Chemo{{= suffix}}">Chemotherapy: </label>
+                <input id="{{= prefix}}Chemo{{= suffix}}" type="text" name="chemo" class="chemoProtocol" /><br/>
+            </div>
+
+            <div>
+                <label for="{{= prefix}}Oncologist{{= suffix}}">Oncologist: </label>
+                <input id="{{= prefix}}Oncologist{{= suffix}}" type="text" name="oncologist" class="oncologist chemo doctor" /><br/>
+            </div>
+
+            {{tmpl "#chemoResultsEventTemplate"}}            
+        </script>     
+
+        <script id="addRadiationFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="3" />
+
+            {{tmpl "#dateRangeInputTemplate"}}
+
+            <div>
+                <label for="{{= prefix}}Oncologist{{= suffix}}">Oncologist: </label>
+                <input id="{{= prefix}}Oncologist{{= suffix}}" type="text" name="oncologist" class="oncologist radiation doctor" /><br/>
+            </div>
+
+            <hr />
+           {{tmpl "#commonEventDataInputTemplate"}}
+        </script>
+
+        <script id="addImmunoFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="4" />
+
+            {{tmpl "#dateRangeInputTemplate"}}
+          
+            {{tmpl "#commonEventDataInputTemplate"}}
+        </script>  
+
+        <script id="addTestFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="5" />
+
+            {{tmpl "#singleDateInputTemplate"}}
+            <!--
+            <label for="{{= prefix}}Icon{{= suffix}}">Test type: </label>
+            <select id="{{= prefix}}Icon{{= suffix}}" name="icon">
+                <option value="">--Select One--</option>
+                <option value="/images/ctscan_40_40.jpg">CT Scan</option>
+                <option value="/images/mri_40_40.jpg">MRI</option>
+                <option value="/images/ultrasound_40_40.jpg">Ultrasound</option>
+            </select>
+            -->
+            
+            <label for="{{= prefix}}TestType{{= suffix}}">Test type: </label>
+            <select id="{{= prefix}}TestType{{= suffix}}" name="testType">
+                <option value="">--Select One--</option>
+                <option value="CT_SCAN">CT Scan</option>
+                <option value="MRI">MRI</option>
+                <option value="ULTRASOUND">Ultrasound</option>
+            </select>
+
+
+
+            <!-- not yet supported - plain text needs to be validated carefully 
+            <hr />
+            <label for="{{= prefix}}Result{{= suffix}}" >Result: </label>
+            <input id="{{= prefix}}Result{{= suffix}}" name="result" type="text" class="result" />
+            -->
+
+            <!--</table>-->
+
+            {{tmpl "#descriptionTemplate"}}
+        </script>               
+        <!--    END:    jQuery Templates for input forms       -->
+
+
+        <script id="errorsDialogTemplate" type="text/x-jquery-tmpl">
+            <div class="msgBox" style="display: none">Oops!  There are a couple of <a class='errorsDialogLink'>errors</a>
+            </div>
+            <div id="errorsDialog{{= eventType[0]}}" class="dialog" title="Errors Dialog">
+                <p class="valid">Nice job!  You&apos;ve now filled in all of the required information correctly, so you should have no trouble submitting the data now.</p>
+                <p class="invalid" style="display: none">Hey there!  Just correct these minor problems and everything should work!</p>
+                <ul class="errors"></ul>
+            </div>   
+        </script>        
+        
+
+    </head>
+    <body>
+        <div id="header" class="center ui-widget ui-widget-header ui-corner-all">
+            <ul class="menu noBullets">
+                <li id="aboutCanvas">About</li>
+                <li id="dedication">Dedication</li>
+                <li><a href="/signup">Sign up!</a></li>
+            </ul>
+            <ul class="menu noBullets right">
+                <li id="settings">Settings</li>
+                <li id="designedBy">Created By: Tal Friedman</li>
+            </ul>
+            <h1 class="title">My Fibrolamellar Story</h1>
+        </div>
+        <div style="height:75px;">
+
+        </div>
+
+        <div id="aboutCanvasDialog" class="dialog" title="About The Canvas">
+            <p>Hi there!</p>
+            <p>This is the canvas.  It allows you to try creating your own timeline without
+                signing up.  If you like what you see, please click 'sign up' to create your
+                very own timeline.</p>
+            <p>NOTE: you cannot save your work on this page!  Only registered users can save their timelines.</p>
+        </div>
+
+        <div id="dedicationDialog" class="dialog" title="Dedication">
+            <pre>
+This site is dedicated to our missing friends 
+    gone but not forgotten
+to the brave fighters we love so dear
+    to mothers, fathers, sisters and brothers, sons and daughters,
+and to all of us who gather to share our stories here.
+            </pre>   
+     
+        </div>
+
+        <div id="errorsDialog" class="dialog" title="Errors Dialog">
+            <p class="valid">Nice job!  You&apos;ve now filled in all of the required information correctly, so you should have no trouble submitting the data now.</p>
+            <p class="invalid" style="display: none">Hey there!  Just correct these minor problems and everything should work!</p>
+            <ul class="errors"></ul>
+        </div>
+
+        <div id="designedByDialog" class="dialog" title="Created By">
+            <div class="TalFriedman">Tal Friedman</div>
+            <div class="role">Builder of Digital Things</div>
+            <p />
+        </div>
+        <div id="settingsDialog" class="dialog" title="Settings">
+           <table>
+                <tr>
+                    <td>Theme: </td>
+                    <td>
+                        <select id="themeSelector">
+                            <option value="default">Default</option>
+                            <option value="indie-green">Indie Green</option>
+                            <option value="indie-blue">Indie Blue</option>
+                            <option value="vader2">Vader 2</option>
+                            <option value="livestrong">Livestrong</option>
+                        </select>
+                    </td>
+                </tr>
+                <!--<tr>
+                    <td></td>
+                    <td><button onclick="$('#settingsDialog').dialog( 'close' );">OK</button>
+                </tr>-->
+            </table>
+        </div>
+        <div id="sidebar">
+        	<div id="eventInfoBox">
+        		<div id="eventInfoTabs" class="tabs">
+        			<ul>
+                        <li><a href="#eventInfoTabs-diagnosis">Diagnoses</a></li>
+        				<li><a href="#eventInfoTabs-surgery" >Surgery</a></li>
+        				<li><a href="#eventInfoTabs-chemotherapy" >Chemo</a></li>
+        				<!--<li><a href="#eventInfoTabs-radiation" >Radiation</a></li>-->
+        				<li><a href="#eventInfoTabs-immunotherapy" >Cell Therapy</a></li>
+        				<li><a href="#eventInfoTabs-test" >Test</a></li>
+        			</ul>
+                    <div class="spacer" style="height: 20px">
+
+                    </div>
+
+                    <div id="eventInfoTabs-diagnosis" class="eventTypeContent Diagnosis ">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Diagnoses on Timeline? </span>
+                            <input type="radio" name="diagnosisToggle" id="0_checked" value="show" checked="checked"/>
+                            <label for="0_checked">&#x2714;</label>
+                            <input type="radio" name="diagnosisToggle" id="0_unchecked" value="hide" />
+                            <label for="0_unchecked">&#x2716;</label><br/>
+                        </div>
+                        <ul />
+                    </div>
+
+        			<!--<div id="eventInfoTabs-surgery" class="accordion">-->
+                    <div id="eventInfoTabs-surgery" class="eventTypeContent Surgery hidden">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Surgeries on Timeline? </span>
+                            <input type="radio" name="surgeriesToggle" id="1_checked" value="show" checked="checked"/>
+                            <label for="1_checked">&#x2714;</label>
+                            <input type="radio" name="surgeriesToggle" id="1_unchecked" value="hide" />
+                            <label for="1_unchecked">&#x2716;</label><br/>
+                        </div>                      
+                        <ul />
+        			</div>
+        			<div id="eventInfoTabs-chemotherapy" class="eventTypeContent Chemo hidden">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Chemotherapies on Timeline? </span>
+                            <input type="radio" name="chemosToggle" id="2_checked" value="show" checked="checked"/>
+                            <label for="2_checked">&#x2714;</label>
+                            <input type="radio" name="chemosToggle" id="2_unchecked" value="hide" />
+                            <label for="2_unchecked">&#x2716;</label><br/>
+                        </div>
+                        <ul />    				
+        			</div>
+        			<div id="eventInfoTabs-radiation" class="eventTypeContent Radiation " style="display: none">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Radiation Events on Timeline? </span>
+                            <input type="radio" name="radiationToggle" id="3_checked" value="show" checked="checked"/>
+                            <label for="3_checked">&#x2714;</label>
+                            <input type="radio" name="radiationToggle" id="3_unchecked" value="hide" />
+                            <label for="3_unchecked">&#x2716;</label><br/>                         
+                        </div>
+                        <ul />
+        			</div>
+        			<div id="eventInfoTabs-immunotherapy" class="eventTypeContent Immuno ">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Cell Therapies on Timeline ?</span>
+                            <input type="radio" name="immunosToggle" id="4_checked" value="show" checked="checked"/>
+                            <label for="4_checked">&#x2714;</label>
+                            <input type="radio" name="immunosToggle" id="4_unchecked" value="hide" />
+                            <label for="4_unchecked">&#x2716;</label><br/>
+                        </div>
+                        <ul />
+        			</div>
+        			<div id="eventInfoTabs-test" class="eventTypeContent Test ">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Tests on Timeline ?</span>
+                            <input type="radio" name="testsToggle" id="5_checked" value="show" checked="checked"/>
+                            <label for="5_checked">&#x2714;</label>
+                            <input type="radio" name="testsToggle" id="5_unchecked" value="hide" />
+                            <label for="5_unchecked">&#x2716;</label><br/>
+                        </div>
+                        <ul />
+        			</div>                        			        			 
+        		</div>
+        	</div>
+    	</div>
+        <div id="main">
+            <div id="my-timeline" class="timeline ui-widget ui-widget-content ui-corner-all" style="color: black;"></div>
+
+            <div id="patientNotesContainer" class="ui-widget ui-widget-content ui-corner-all">
+                <div id="patientNotesHeader">
+                    <h3>In My Own Words:</h3>
+                    <span class="msgBox" style="display: none">Oops!  There are a couple of <a class='errorsDialogLink'>errors</a></span>
+                </div>
+                <div id="patientNotesMain">
+                    <div id="patientNotesNav" class="ui-widget ui-widget-content ui-corner-all">
+                    </div>
+                    <div id="patientNotes">
+                        <ul />
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div id="theAbyss" style="display:none">
+            <div class="hidden">put stuff here that will never be seen</div>
+        </div>
+        <noscript>
+            This page uses Javascript to show you a Timeline. Please enable Javascript in your browser to see the full page. Thank you.
+        </noscript>
+    </body>
+</html>

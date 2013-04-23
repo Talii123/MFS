@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>For all your event testing needs...</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+	<script>
+	var successFunc = function (data, textStatus, jqXHR) {
+		console.log("Successfully posted event to server.");
+		console.log("data = ", data);
+		console.log("textStatus = ", textStatus);
+		console.log("jqXHR = ", jqXHR);
+	},
+	/*eventToAdd = {
+			"eventID":"anonUser_1361942770678_3",
+			"id":"anonUser_1361942770678_3"	,			
+			"title":"Another Diagnosis",
+			"type":"Diagnosis",
+			"typeIndex":"0",
+			"icon":"/images/diagnosis_40_40.jpg",
+			"start":"February 27, 2013",
+			
+			"age":"",
+			"stage":"Not Sure",
+			"metastatic":"Not Sure",
+			"lymphNodes":"Not Sure",
+			"vascularInvasion":"Not Sure",
+			"microVascularInvastion":"Not Sure",
+			"":"Add Diagnosis",
+	},*/
+	eventToAdd = {
+			"eventID":"e26",
+			"id":"e26"	,			
+			"title":"Another Diagnosis",
+			"type":"DIAGNOSIS",
+			"typeIndex":"0",
+			"icon":"/images/diagnosis_40_40.jpg",
+			"start":"February 27, 2013",
+			
+			"typeDetails" : {
+				"age":"",
+				"stage":"Not Sure",
+				"metastatic":"Not Sure",
+				"lymphNodes":"Not Sure",
+				"vascularInvasion":"Not Sure",
+				"microVascularInvastion":"Not Sure",
+				"":"Add Diagnosis"				
+			}	
+	}, /* {
+		"title":"Nexavar",
+		"icon":"/images/chemo_40_40.jpg",
+		"start":"October 8, 2007",
+		"end":"October 23, 2007",
+		"description":"This is a description.",
+		"typeDetails":{
+			"type":"CHEMO",
+			"typeIndex":"2",
+			"oncologist":"Dr. Eric Chen",
+			"result":"Bad",
+			"isRecommended":"No",
+			"":"Add Chemotherapy"
+		},
+		"id":"e1"
+	},*/
+	addEvent = function () {
+		console.log("dao is adding the event: ", eventToAdd, "... ");
+		$.ajax("/myStory/events/", {
+			type		: 	"POST",
+			//mimeType 	: 	"application/json",
+			contentType : 	"application/json",
+			data 		: 	JSON.stringify(eventToAdd),
+			dataType	: 	"json", 
+			success 	: 	successFunc,
+			//crossDomain : 	true
+		});
+
+		console.log("request sent.");
+	};	
+	
+	</script>
+</head>
+<body>
+	<h1>For all your event testing needs...</h1>
+	
+	
+	<button onclick="addEvent();">Add Event</button>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>Hello World!</title>
+		
+	</head>
+	<body>
+		<form id="testForm" action="post">
+			<select id="httpMethod">
+				<option selected="selected">POST</option>
+				<option>PUT</option>
+				<option>DELETE</option>
+			</select>
+			<input type="button" id="submitButton" value="Submit"/>
+		</form>
+		 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		 <script>
+		 	$(function() {
+		 		$("#submitButton").click(function() {
+		 			$.ajax("/hello", {
+		 				"headers" 	: 	{"x-post-override" : $("#httpMethod option:selected").val()},
+		 				"type"		: 	"POST",
+		 				"data"		: 	{"greeting" : "Hello Server!"},
+		 				"success" 	: 	function(data, textStatus, jqXHR) {alert("got the message: "+data);}
+		 			});
+		 		});
+		 	});
+		 </script>
+	</body>
+</html>

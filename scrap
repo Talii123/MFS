@@ -1,0 +1,116 @@
+                bandInfos = [Timeline.createHotZoneBandInfo({
+                     zones: [
+                         {   start:    "Sep 01 2006 00:00:00 GMT-0500",
+                             end:      "Oct 01 2006 00:00:00 GMT-0500",
+                             magnify:  5,
+                             unit:     Timeline.DateTime.WEEK
+                         },
+                         {   start:    "Sep 07 2006 00:00:00 GMT-0500",
+                             end:      "Sep 14 2006 00:00:00 GMT-0500",
+                             magnify:  7,
+                             unit:     Timeline.DateTime.DAY
+                         }/*,
+                         {   start:    "Aug 02 2006 06:00:00 GMT-0500",
+                             end:      "Aug 02 2006 12:00:00 GMT-0500",
+                             magnify:  5,
+                             unit:     Timeline.DateTime.HOUR
+                         }*/
+                     ],
+                     timeZone:       -5,                    
+                    eventSource: eventSource,
+                    eventPainter: compactEventPainter,
+                    eventPainterParams: compactEventPainterParams,
+                    //layout            :   "original",
+                    date            :   "Nov 28 2006 00:00:00 GMT-0600",
+                    width           :   "85%",
+                    intervalUnit    :   Timeline.DateTime.MONTH,
+                    intervalPixels  :   100,
+                    theme           :   theme
+                }), Timeline.createBandInfo({
+                    eventSource     :   eventSource,
+                    layout          :   "overview",
+                    //eventPainter: compactEventPainter,
+                    //eventPainterParams: compactEventPainterParams,                                    
+                    date            :   "Nov 28 2006 00:00:00 GMT-0600",
+                    width           :   "15%",
+                    intervalUnit    :   Timeline.DateTime.YEAR,
+                    intervalPixels  :   200,
+                    theme           :   theme
+                })];
+
+                
+                		<div>
+            <ul>
+            	<li>logoutURL: ${logoutURL}</li>
+            	<li>loginURL: ${loginURL}</li>
+            	<li>signupURL: ${signupURL}</li>
+            	<li>plain:
+            		<c:choose>
+            			<c:when test="${logoutURL}">
+            				when
+            			</c:when>
+            			<c:otherwise>
+            				otherwise
+            			</c:otherwise>
+            		</c:choose>
+            	</li>
+            	<li>not:
+            		<c:choose>
+            			<c:when test="${!logoutURL}">
+            				when
+            			</c:when>
+            			<c:otherwise>
+            				otherwise
+            			</c:otherwise>
+            		</c:choose>
+            	</li>
+            	<li>empty:
+            		<c:choose>
+            			<c:when test="${empty logoutURL}">
+            				when
+            			</c:when>
+            			<c:otherwise>
+            				otherwise
+            			</c:otherwise>
+            		</c:choose>
+            	</li>    
+            	<li>not empty:
+            		<c:choose>
+            			<c:when test="${!empty logoutURL}">
+            				when
+            			</c:when>
+            			<c:otherwise>
+            				otherwise
+            			</c:otherwise>
+            		</c:choose>
+            	</li>            	        	
+            </ul>
+            
+		</div>
+                
+                            
+            <label for="{{= prefix}}Fellow{{= suffix}}">Fellow: </label>
+            <input id="{{= prefix}}Fellow{{= suffix}}" type="text" name="fellow" class="doctor fellow name" /><br/>
+            <label for="{{= prefix}}PhysicianAssistant{{= suffix}}">Physician&apos;s Assistant: </label>
+            <input id="{{= prefix}}PhysicianAssistant{{= suffix}}" type="text" name="physicianAssistant" class="physicianAssistant name" /><br/>
+
+
+
+    /*function provideTemplate(templates) {
+        $("head").append(templates);
+        //$.getScript("/js/all-fullStory.js").fail(onFail);
+        $.get("/js/all-fullStory.js", function(js) {
+            console.log("loaded js: \n", js);
+            var script = $("<script/>");
+            script.append(js);
+            $("head").append(script);
+                //$('<script />').append(js)
+            //);
+        }, "script");
+    }*/
+                
+    // might want to defer this til after page rendering, or roll up into all-play.js
+    /*$.get("/templates/eventFormatting.jqtmpl", provideTemplate, "text");
+    $.get("/templates/general.jqtmpl", provideTemplate, "text");
+    $.get("/templates/inputForm.jqtmpl", provideTemplate, "text");*/
+    //$.get("/templates/all.jqtmpl", provideTemplate, "text");

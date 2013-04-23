@@ -1,0 +1,7 @@
+<script type="text/x-events-json"  id="eventsToLoad">
+	<%@ include file="/json/demoEventsData.json" %>
+</script>
+
+<script type="text/x-events-json"  id="chaptersToLoad">
+	<%@ include file="/json/demoChaptersData.json" %>
+</script>

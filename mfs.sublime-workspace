@@ -1,0 +1,393 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"end",
+				"endProj"
+			],
+			[
+				"start",
+				"startProj"
+			],
+			[
+				"get",
+				"getDefaultTheme"
+			],
+			[
+				"DE",
+				"DEFAULT_END_PROJ"
+			],
+			[
+				"DEF",
+				"DEFAULT_START_PROJ"
+			],
+			[
+				"the",
+				"themeOptions"
+			],
+			[
+				"error",
+				"errorMsg"
+			],
+			[
+				"eve",
+				"eventDataURL"
+			],
+			[
+				"DEFA",
+				"DEFAULT_TIMELINE_CONTAINER_ID"
+			],
+			[
+				"band",
+				"bandInfos"
+			],
+			[
+				"DEf",
+				"DEFAULT_END_PROJ"
+			],
+			[
+				"time",
+				"timelineConfig"
+			],
+			[
+				"dom",
+				"domFunctions"
+			],
+			[
+				"aja",
+				"ajaxFunctions"
+			],
+			[
+				"even",
+				"eventFunctions"
+			],
+			[
+				"ass",
+				"assertModule"
+			],
+			[
+				"mod",
+				"moduleName"
+			],
+			[
+				"call",
+				"callback"
+			],
+			[
+				"edit",
+				"editDiv"
+			],
+			[
+				"di",
+				"editDiv"
+			],
+			[
+				"toggle",
+				"toggleAddEdit"
+			],
+			[
+				"add",
+				"addDiv"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"li",
+				"link	Tag"
+			],
+			[
+				"in",
+				"input	Tag"
+			],
+			[
+				"barBox",
+				"barBoxContainer"
+			],
+			[
+				"back",
+				"background	background-color: name"
+			],
+			[
+				"backgr",
+				"background	background-color: name"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/Talii/Dropbox/MyFibroCancerStory/untitled",
+		"/Users/Talii/Downloads/timeline_2.3.0 src/src/webapp/api/scripts/l10n/en/timeline.js",
+		"/Users/Talii/Downloads/timeline_2.3.0 src/src/webapp/api/scripts/units.js",
+		"/Users/Talii/Dropbox/My Timeline/war/SandboxTest.html",
+		"/Users/Talii/Dropbox/My Timeline/MyTimeline.js",
+		"/Users/Talii/Dropbox/My Timeline/war/timeline.js",
+		"/Users/Talii/Dropbox/My Timeline/war/old.timeline.js",
+		"/Users/Talii/Dropbox/cancer timelines/TuckerTimeline.html",
+		"/Users/Talii/Dropbox/FutureLab2012/futurelab.html",
+		"/Users/Talii/Documents/Patient Portal Strategy",
+		"/Users/Talii/Documents/These Are My Scars Strategy",
+		"/Users/Talii/Dropbox/Future Lab 2012/futurelab2.js",
+		"/Users/Talii/Dropbox/Future Lab 2012/common.css",
+		"/Users/Talii/Dropbox/Future Lab 2012/futurelab2.css",
+		"/Users/Talii/Documents/Treatment Options for FCF",
+		"/Users/Talii/Dropbox/Future Lab 2012/futurelab_backup.html",
+		"/Users/Talii/Dropbox/Future Lab 2012/futurelab2.html",
+		"/Users/Talii/Dropbox/Future Lab 2012/futurelab.html",
+		"/Users/Talii/Dropbox/SOPA Emergency IP list:"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Users/Talii/Downloads/timeline_2.3.0 src/src/webapp/api/scripts",
+			"/Users/Talii/Downloads/timeline_2.3.0 src/src/ajax/api/scripts",
+			"/Users/Talii/Downloads/timeline_2.3.0 src/src/webapp/api/scripts",
+			"/Users/Talii/Downloads/timeline_2.3.0 src/src/ajax",
+			"/Users/Talii/Downloads/timeline_2.3.0 src/src/webapp/api/scripts"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			".paint",
+			"_paintEvents",
+			"layout",
+			"_createhighlightDiv",
+			"highlight\nhighlight\nhighlight\n\n_createHighlightDiv",
+			"highlight\nhighlight",
+			"highlight",
+			"createhighlightDiv",
+			"initialize",
+			"paintEvent",
+			"highlight",
+			"eventPaintListener",
+			"fillDescription",
+			"_showBubble",
+			".showbubble",
+			"._paintDeco",
+			".paint",
+			"_decorators",
+			"SimileAjax.NativeDateUnit",
+			"NativeDateUnit",
+			"decorators",
+			"center",
+			"fillInfoBubble",
+			"showBubble",
+			"decorator",
+			"dateToPixel",
+			"eventPainter",
+			"painter",
+			".paint",
+			"paintEvents",
+			".paintEvents",
+			".softPaint",
+			"onAdd",
+			"listener",
+			"softPaint",
+			".prototype.",
+			".paint",
+			"_distributeWidths",
+			"_autoWidthCheck",
+			".layout",
+			".paint",
+			"._fire",
+			"onAddOne",
+			"onAdd",
+			"._fire",
+			"fire",
+			".fire",
+			"fire",
+			"loadJSON",
+			"GregorianDateLabeller",
+			"defaultLabelInterval",
+			"hour",
+			"datetime",
+			"zone",
+			".parse",
+			"onAddMany",
+			"getEvent",
+			"getEVent",
+			"event",
+			"loadJSON",
+			"setCenterVisibleDate",
+			"center",
+			"prototype.get",
+			"prototype._get",
+			"getEventSource",
+			"prototype.get",
+			"impl",
+			"prototype.get",
+			"prototype.set",
+			"prototype.get",
+			"get",
+			"sync",
+			"_setSyncWithBandDate",
+			"sync",
+			"setHighlight",
+			"_onHighlightBandScroll",
+			"_syncWithBandHandler",
+			"_onHighlightBandScroll",
+			"_selectorListener",
+			"_onHighlightBandScroll",
+			"sync",
+			"sync\nsync\nsync\nsync\nsetSyncWithBand",
+			"sync\nsync",
+			"sync",
+			"_resolveRelativeURL",
+			"loadJSON",
+			"_resolveRelativeURL",
+			"_getBaseURL",
+			"_resolveRelativeURL",
+			"event.text",
+			"caption",
+			"hoverText",
+			"onaddOne",
+			"_eventListener",
+			"_onAddMany",
+			"_paintEvents",
+			"_paintEvents()",
+			"onAdd",
+			"add",
+			"getProperty",
+			"SimileAjax.EventIndex",
+			"set",
+			"event",
+			"_events",
+			"getEvent",
+			"getID",
+			".id",
+			"id",
+			"Timeline.DefaultEventSource.Event",
+			"toggleAddEdit",
+			"this",
+			"eventSource",
+			"toggleAddEdit",
+			"testAddEvent",
+			"demo",
+			"style",
+			"events.json"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 227.0,
+	"status_bar_visible": true
+}

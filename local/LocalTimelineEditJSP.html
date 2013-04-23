@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>    
+    	<title>My Fibrolamellar Story</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+<!--<link class="jqueryUICss" type="text/css" rel="stylesheet" href="css/default/jquery-ui-1.8.23.custom.css" />-->
+        <link class="jqueryUICss" type="text/css" rel="stylesheet" href="css/default/jquery-ui-1.9.2.custom.css" />        
+        <link id="appCss" type="text/css" rel="stylesheet" href="css/app.css" />
+        <link class="coloursCss" type="text/css" rel="stylesheet" href="css/default/colours.css" />
+        <link id="editUICss" type="text/css" rel="stylesheet" href="css/editUI.css"/>
+ 		<!--<link type="text/css" rel="stylesheet" href="css/nike-livestrong-theme/jquery-ui-1.8.23.custom.css" />
+ 		<link type="text/css" rel="stylesheet" href="css/demo.css" />-->
+        
+        <script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui-1.9.1.custom.js" type="text/javascript"></script>
+        <script src="js/jquery.tmpl.js" type="text/javascript"></script>
+        
+        <script>
+	        function provideTemplate(templates) {
+	        	$("head").append(templates);
+	        }        
+        
+        	$.get("templates/all.jqtmpl", provideTemplate, "text");
+        </script>
+
+        <script src="js/jquery.watermarkinput.js" type="text/javascript"></script>
+        <script src="js/jquery.validate.js" type="text/javascript"></script>
+
+        <script src="js/date.format.js" type="text/javascript"></script>
+        
+        <script src="javascripts/timeline/tal/tal_ajax.js" type="text/javascript"></script>
+        <script src="javascripts/timeline/timeline_ajax/simile-ajax-bundle.js" type="text/javascript"></script>
+        <script src="javascripts/timeline/tal/tal_timeline.js" type="text/javascript"></script>
+        <script src="javascripts/timeline/timeline_js/timeline-bundle.js" type="text/javascript"></script>
+        <script src="javascripts/timeline/timeline_js/scripts/l10n/en/labellers.js" type="text/javascript"></script>
+        <script src="javascripts/timeline/timeline_js/scripts/l10n/en/timeline.js" type="text/javascript"></script>
+        
+        <link type="text/css" rel="stylesheet" href="javascripts/timeline/timeline_ajax/styles/graphics.css" />
+        <link type="text/css" rel="stylesheet" href="javascripts/timeline/timeline_js/timeline-bundle.css" />
+        
+        <script src="js/themer.js" type="text/javascript"></script>
+
+		<script src="js/cancer_events_source.js"></script>
+
+		<script src="js/sandbox.js" type="text/javascript"></script>
+        <script src="js/common-module.js" type="text/javascript"></script>
+		<script src="js/timeline-view-module.js" type="text/javascript"></script>
+        <script src="js/timeline-edit-module.js" type="text/javascript"></script>
+        <script src="js/chapters-edit-module.js" type="text/javascript"></script>
+        <script src="js/dao-module.js" type="text/javascript"></script>
+
+        <script src="js/fullStory.js" type="text/javascript"></script>
+            
+
+        
+    </head>
+    <body>
+        <div id="header" class="center ui-widget ui-widget-header ui-corner-all">
+            <ul class="menu noBullets">
+                <li id="about">About</li>
+                <li id="settings">Settings</li>
+            </ul>
+            <ul class="menu noBullets right">
+                <li><a href="https://docs.google.com/spreadsheet/viewform?formkey=dFhmak1rbFVad2xTdVQtWG9RUmNSRGc6MQ" target="_blank">Feedback!!</a></li>                
+            </ul>
+            <h1 class="title">My Fibrolamellar Story</h1>
+        </div>
+        <div style="height:75px;">
+
+        </div>
+
+        <div id="aboutDialog" class="dialog" title="About This Project">
+<p>This project is about helping patients share their stories with others and gathering information to help our community.</p>
+
+<p>At the center of it all is an interactive timeline.  On the right, you can see  events categorized by type - surgeries, chemos, diagnoses etc.  If you click on the title of the event, it will take you to the event’s location on the timeline.  Below the timeline is a section for the patient to tell their story in detail.  You can click on the titles on the left and the chapter will be visible in the story box and highlighted on the timeline.</p>
+
+<p>This prototype is “based on a true story,” but it’s not 100% accurate.  The treatments, side effects and results are accurate.  The dates may be wrong, but the order of events and their durations are correct.</p>
+
+<p>I’m using aliases for the doctors' names and the hospitals.  The reason for this is that the prototype you’re viewing is LIVE on the Internet-  it’s public so anyone can see it.  I’ve decided (for now) to keep a few things private.</p>
+
+<p>Hope you enjoy it!<br/>Tal</p>
+
+        </div>
+
+        <div id="errorsDialog" class="dialog" title="Errors Dialog">
+            <p class="valid">Nice job!  You&apos;ve now filled in all of the required information correctly, so you should have no trouble submitting the data now.</p>
+            <p class="invalid" style="display: none">Hey there!  Just correct these minor problems and everything should work!</p>
+            <ul class="errors"></ul>
+        </div>
+        <div id="settingsDialog" class="dialog" title="Settings">
+           <table>
+                <tr>
+                    <td>Theme: </td>
+                    <td>
+                        <select id="themeSelector">
+                            <option value="default">Default</option>
+                            <option value="indie-green">Indie Green</option>
+                            <option value="indie-blue">Indie Blue</option>
+                            <option value="vader2">Vader 2</option>
+                            <option value="livestrong">Livestrong</option>
+                        </select>
+                    </td>
+                </tr>
+                <!--<tr>
+                    <td></td>
+                    <td><button onclick="$('#settingsDialog').dialog( 'close' );">OK</button>
+                </tr>-->
+            </table>
+        </div>
+        <div id="sidebar">
+        	<div id="eventInfoBox">
+        		<div id="eventInfoTabs" class="tabs">
+        			<ul>
+                        <li><a href="#eventInfoTabs-diagnosis">Diagnoses</a></li>
+        				<li><a href="#eventInfoTabs-surgery" >Surgery</a></li>
+        				<li><a href="#eventInfoTabs-chemotherapy" >Chemo</a></li>
+        				<!--<li><a href="#eventInfoTabs-radiation" >Radiation</a></li>-->
+        				<li><a href="#eventInfoTabs-immunotherapy" >Cell Therapy</a></li>
+        				<li><a href="#eventInfoTabs-test" >Test</a></li>
+        			</ul>
+                    <div class="spacer" style="height: 20px">
+
+                    </div>
+
+                    <div id="eventInfoTabs-diagnosis" class="eventTypeContent Diagnosis ">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Diagnoses on Timeline? </span>
+                            <input type="radio" name="diagnosisToggle" id="0_checked" value="show" checked="checked"/>
+                            <label for="0_checked">&#x2714;</label>
+                            <input type="radio" name="diagnosisToggle" id="0_unchecked" value="hide" />
+                            <label for="0_unchecked">&#x2716;</label><br/>
+                        </div>
+                        <ul />
+                    </div>
+
+        			<!--<div id="eventInfoTabs-surgery" class="accordion">-->
+                    <div id="eventInfoTabs-surgery" class="eventTypeContent Surgery hidden">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Surgeries on Timeline? </span>
+                            <input type="radio" name="surgeriesToggle" id="1_checked" value="show" checked="checked"/>
+                            <label for="1_checked">&#x2714;</label>
+                            <input type="radio" name="surgeriesToggle" id="1_unchecked" value="hide" />
+                            <label for="1_unchecked">&#x2716;</label><br/>
+                        </div>                      
+                        <ul />
+        			</div>
+        			<div id="eventInfoTabs-chemotherapy" class="eventTypeContent Chemo hidden">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Chemotherapies on Timeline? </span>
+                            <input type="radio" name="chemosToggle" id="2_checked" value="show" checked="checked"/>
+                            <label for="2_checked">&#x2714;</label>
+                            <input type="radio" name="chemosToggle" id="2_unchecked" value="hide" />
+                            <label for="2_unchecked">&#x2716;</label><br/>
+                        </div>
+                        <ul />    				
+        			</div>
+        			<div id="eventInfoTabs-radiation" class="eventTypeContent Radiation " style="display: none">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Radiation Events on Timeline? </span>
+                            <input type="radio" name="radiationToggle" id="3_checked" value="show" checked="checked"/>
+                            <label for="3_checked">&#x2714;</label>
+                            <input type="radio" name="radiationToggle" id="3_unchecked" value="hide" />
+                            <label for="3_unchecked">&#x2716;</label><br/>                         
+                        </div>
+                        <ul />
+        			</div>
+        			<div id="eventInfoTabs-immunotherapy" class="eventTypeContent Immuno ">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Cell Therapies on Timeline ?</span>
+                            <input type="radio" name="immunosToggle" id="4_checked" value="show" checked="checked"/>
+                            <label for="4_checked">&#x2714;</label>
+                            <input type="radio" name="immunosToggle" id="4_unchecked" value="hide" />
+                            <label for="4_unchecked">&#x2716;</label><br/>
+                        </div>
+                        <ul />
+        			</div>
+        			<div id="eventInfoTabs-test" class="eventTypeContent Test ">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Tests on Timeline ?</span>
+                            <input type="radio" name="testsToggle" id="5_checked" value="show" checked="checked"/>
+                            <label for="5_checked">&#x2714;</label>
+                            <input type="radio" name="testsToggle" id="5_unchecked" value="hide" />
+                            <label for="5_unchecked">&#x2716;</label><br/>
+                        </div>
+                        <ul />
+        			</div>                        			        			 
+        		</div>
+        	</div>
+    	</div>
+        <div id="main">
+            <div id="my-timeline" class="timeline ui-widget ui-widget-content ui-corner-all" style="color: black;"></div>
+
+            <div id="patientNotesContainer" class="ui-widget ui-widget-content ui-corner-all">
+                <div id="patientNotesHeader">
+                    <h3>In My Own Words:</h3>
+                    <span class="msgBox" style="display: none">Oops!  There are a couple of <a class='errorsDialogLink'>errors</a></span>
+                </div>
+                <div id="patientNotesMain">
+                    <div id="patientNotesNav" class="ui-widget ui-widget-content ui-corner-all">
+                    </div>
+                    <div id="patientNotes">
+                        <ul />
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div id="theAbyss" style="display:none">
+            <div class="hidden">put stuff here that will never be seen</div>
+        </div>
+        <noscript>
+            This page uses Javascript to show you a Timeline. Please enable Javascript in your browser to see the full page. Thank you.
+        </noscript>
+    </body>
+</html>

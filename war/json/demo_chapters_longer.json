@@ -1,0 +1,30 @@
+{            
+    "chapters" : [
+        {
+            "title"     :   "Diagnosis",
+            "start"     :   "September 4, 2006",
+            "end"       :   "September 17, 2006",
+            "text"      :   "Labour Day, 2006, seemed just like any other day...\\n\\n Until I saw my mom.  'Tal, you're yellow!' she said.  I thought she was imagining things so she asked my dad. 'Isn't Tal Yellow?' To my surprise, he said yes.  I looked in the mirror and what I saw looking back at me resembled Bart Simpson more than it did me.  Trying not to panic, my mom and I made a plan.  I was going to see my doctor on Wednesday anyway (I had been feeling like I had a virus for a week or two, so I already had an appointment.)\\n\\n On Wednesday the doctor examined me and told me there was nothing to worry about - it was probably just Hepatitis A.  Apparently, a lot of times at the tail end of Hepatitis A the patient can become jaundiced.  As a precaution, he ordered blood work, as well as urine and stool tests."    
+        }, {
+            "title"     :   "1st Round",
+            "start"     :   "September 14, 2006",
+            "end"       :   "February 21, 2007",
+            "text"      :   "Two painful procedures and an 8 hr surgery later and the doctors told me to get on with my life."
+        }, {
+            "title"     :   "Metastasis",
+            "start"     :   "September 17, 2007",
+            "end"       :   "November 27, 2007",
+            "text"      :   "In September 2007, it came back. They spotted two tumors - one in the chest and one in my diaphragm. I also had enlarged lymph nodes. The only thing my doctors wanted to try was Sorafenib (\"Nexavar\"). After 10 days, I had to stop - it was killing me faster than the cancer was. My doctors wanted to give up, but my family didn't, so we found other doctors."
+        }, {
+            "title"     :   "2nd Round",
+            "start"     :   "December 5, 2007",
+            "end"       :   "June 28, 2009",
+            "text"      :   "Eventually I had a surgery to remove the tumors. They couldn't safely remove the lymph nodes so they gave me some radiation during the surgery. After that, I did 9 rounds of chemotherapy - 5FU and Interferon Alpha. The lymph nodes shrunk somewhat after the first 3 rounds and stayed stable after that. I then went and tried some cell therapy (like Sarah) and the nodes continued to be stable."
+        }, {
+            "title"     :   "3rd Round" ,
+            "start"     :   "October 9, 2009",
+            "end"       :   "May 31, 2010",
+            "text"      :   "In October 2009, the lymph nodes started growing again. I had surgery for a 3rd time, and this time, they got it all. I did 3 more rounds of chemo as a precaution, and now I have no evidence of disease."
+        } 
+    ]
+}

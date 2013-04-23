@@ -1,0 +1,46 @@
+
+/* colours.css */
+
+body {
+	font-size: 14px;
+	background-color: #f8f8f8;
+	color: #000;	
+    font-family: "Comic Sans MS", Verdana, Geneva, sans-serif;
+}
+
+/*.ui-widget {
+    font-family: "Comic Sans MS", Verdana, Geneva, sans-serif;
+}*/
+
+#header li:hover {
+	text-decoration: underline;
+}
+
+#designedByDialog a {
+	color: #4CA20B;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #dedede;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+/* for editing UI */
+.eventControls .button {
+    background-color: #DEDEDE;
+    color: #FFFFFF;
+}
+
+.eventControls .button:hover {
+    background-color: #027A00;
+}

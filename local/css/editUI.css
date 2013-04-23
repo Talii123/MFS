@@ -1,0 +1,162 @@
+.errorsDialogLink {
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 1.1em;
+}
+
+label.error {
+  font-weight: bold;
+}
+
+.msgBox {
+  font-size: 1.2em;
+}
+
+div.msgBox {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.eventControls {
+  display: none;
+  float: right;
+  margin: 1.2em;
+}
+
+
+.eventControls .button {
+	padding: 0.1em 0.3em;
+}
+
+.modifyChaptersControls {
+  float: right;
+  margin-right: 0.5em;
+}
+
+.modifyChaptersControls .addEventFormLink, .modifyChaptersControls .cancelButton, .modifyChaptersControls .deleteEventTrigger {
+  float: right;
+  margin-left: 0.5em;
+}
+
+form label {
+	float: left;
+	width: 9em;	
+}
+
+form br {
+	clear: left;
+}
+
+form.Chapter label {
+  float: left;
+  width: 4em; 
+}
+
+
+/*.recoveryTime, .recoveryTimeHospital {
+    width: 3em;
+    padding: 0 0.5em;
+}
+
+div.recovery {
+    float: right;
+    display: inline-block;
+}
+
+form div.recovery input, form div.recovery select {
+    float: none;
+} 
+*/
+form {
+    line-height: 1.75em;
+    padding: 1em;
+    text-align: left;
+    /*padding-right: 2em;       
+    height: 1em;
+    float: left;*/
+}
+
+form input[type="text"], form select {
+  height: 1em;
+  max-width: 8em;
+  margin-bottom: 0.5em;
+  margin-left: 2em;
+  text-align: center;
+}
+
+form input.date {
+  width: 6em;
+}
+
+/* jQueryUI's datepicker gets its z-index from the input element for the datepicker; it tags
+this input with the "hasDatepicker" class
+add z-index to these inputs I so that it will be on top of timeline no matter what */
+#ui-datepicker-div {
+  z-index: 9999;
+}
+
+form.Chapter div#endDateDiv {
+  float: right;
+  margin-right: 0.5em;  /* title's margin - calendar icon's margin */
+}
+
+form.Chapter input[type="text"], form.Chapter select {
+  height: 1em;
+  margin-bottom: 0.5em;
+  margin-left: 1em;
+  /*max-width: 7em;*/
+  text-align: center;
+}
+
+form.Diagnosis input[type="text"], form.Diagnosis select {
+	margin-left: 3em;
+}
+
+/* temporary; needs to match other buttons in the nav */
+#newChapterTabTitle {
+  background-color: black;
+  color: #FDCC00;
+  border: 3px dashed #FDCC00;
+  width: 107px;
+}
+
+form img {
+	padding: 0 0.5em;
+}
+
+/*form h3 > input[type="text"] {
+    height: inherit;
+    float: none;
+}
+*/
+form.addEventForm input[name="title"] {
+  margin: 0 1em;
+  text-align: left;
+  width: 90%;
+  /* needed to override max-width set for other inputs */
+  max-width: 90%;
+}
+
+form input[type="button"] {
+    float: right;
+}
+
+form.Chapter {
+  padding: 0;
+  /*
+  background-color: black;
+  height: 15em;
+  overflow-y: auto;
+  position: absolute;
+  top: 22em;
+  width: 30em;
+  z-index: 2147483647;*/
+}
+
+.newEventContent {
+    padding: 0 1em;
+}
+
+textarea[name="description"] {
+    width: 100%;
+}

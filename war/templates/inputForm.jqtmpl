@@ -1,0 +1,562 @@
+        <!--    BEGIN:  jQuery Templates for input forms       -->
+        <script id="dateRangeInputTemplate" type="text/x-jquery-tmpl">
+            <label for="{{= prefix}}Start{{= suffix}}">Started: </label>
+            <input id="{{= prefix}}Start{{= suffix}}" type="text" name="start" class="startDate required date" /><br/>
+            <label for="{{= prefix}}End{{= suffix}}">Ended: </label>
+            <input id="{{= prefix}}End{{= suffix}}" type="text" name="end" class="endDate date" /><br/>
+
+            <!--<tr>
+            <td>Started:</td><td><input type="text" name="start" class="startDate required date" /></td>
+            </tr>
+            <tr>
+            <td>Ended: </td><td><input type="text" name="end" class="endDate required date" /></td>-->
+        </script>
+
+        <script id="singleDateInputTemplate" type="text/x-jquery-tmpl">
+            <label for="{{= prefix}}Start{{= suffix}}" >Performed On: </label>
+            <input id="{{= prefix}}Start{{= suffix}}" type="text" name="start" class="onDate required date" />
+            <br/>
+
+            <!-- TODO: add support for calculating durations during input -->
+            {{if $data.getProperty("duration")}}
+                Duration: <span class="duration">${$data.getProperty("duration")}</span>
+                <br/>
+            {{/if}}
+        </script> 
+
+        <script id="trinarySelectTemplate" type="text/x-jquery-tmpl">
+            <label for="{{= prefix}}{{= selectBaseId}}{{= suffix}}">{{= selectLabel}} </label>
+            <select id="{{= prefix}}{{= selectBaseId}}{{= suffix}}" name="{{= selectName}}">
+                <option value="UNKNOWN">Not Sure</option>
+                <option value="false">NO</option>
+                <option value="true">YES</option>
+            </select>
+            <br/>
+        </script>
+
+        <script id="surgeryResultsEventTemplate" type="text/x-jquery-tmpl">
+            <hr />
+            <h3>Results: </h3>
+            <div class="results">
+                <input type="radio" name="result" value="ALL" id="{{= prefix}}resultALL{{= suffix}}">
+                <label for="{{= prefix}}resultALL{{= suffix}}">All of the cancer was removed.</label>
+                <br/>
+
+                <input type="radio" name="result" value="SOME" id="{{= prefix}}resultSOME{{= suffix}}">
+                <label for="{{= prefix}}resultSOME{{= suffix}}">Some of the cancer was removed</label>
+                <br/>
+
+                <input type="radio" name="result" value="NONE" id="{{= prefix}}resultNONE{{= suffix}}">
+                <label for="{{= prefix}}resultNONE{{= suffix}}">None of the cancer was remvoed</label>
+                <br/>
+            </div>
+
+            {{tmpl "#commonEventDataInputTemplate"}}
+        </script>
+
+        <script id="chemoResultsEventTemplate" type="text/x-jquery-tmpl">
+            <hr />
+            <h3>Results: </h3>
+            <div class="results">
+                <input type="radio" name="result" value="CR" id="{{= prefix}}resultCR{{= suffix}}">
+                <label for="{{= prefix}}resultCR{{= suffix}}">Remission - no sign of cancer after the treatment</label>
+                <br/>
+
+                <input type="radio" name="result" value="PR1" id="{{= prefix}}resultPR1{{= suffix}}">
+                <label for="{{= prefix}}resultPR1{{= suffix}}">Some spots got smaller, others stayed the same</label>
+                <br/>
+
+                <input type="radio" name="result" value="PR2" id="{{= prefix}}resultPR2{{= suffix}}">
+                <label for="{{= prefix}}resultPR2{{= suffix}}">Some spots got smaller, but others got bigger</label>
+                <br/>
+
+                <input type="radio" name="result" value="SD" id="{{= prefix}}resultSD{{= suffix}}">
+                <label for="{{= prefix}}resultSD{{= suffix}}">No Change</label>
+                <br/>
+
+                <input type="radio" name="result" value="PD" id="{{= prefix}}resultPD{{= suffix}}">
+                <label for="{{= prefix}}resultPD{{= suffix}}">All spots stayed the same or got worse</label>
+                <br/>
+
+                <input type="radio" name="result" value="DK" id="{{= prefix}}resultDK{{= suffix}}">
+                <label for="{{= prefix}}resultDK{{= suffix}}">Not sure</label>
+                <br/>
+            </div>
+            <!--
+            <label for="{{= prefix}}Result{{= suffix}}" >Result: </label>
+            <select id="{{= prefix}}Result{{= suffix}}" name="result">
+                <option value="UNKNOWN">Not Sure</option>
+                <option></option>
+                <option>II</option>
+                <option>III</option>
+                <option>IV</option>
+            </select>
+            -->
+
+           <!--
+            <input id="{{= prefix}}Result{{= suffix}}" name="result" type="text" class="result" />
+            <div>
+                <br/>
+                Side Effects: <br/><br/>
+                <div class="sideEffects">
+                    <ol>
+                        {{each $data.getProperty("sideEffects")}}
+                            <li>${$value}</li>
+                        {{/each}}
+                    </ol>
+                </div>
+            <div>
+            <label for="{{= prefix}}Result{{= suffix}}">Do You believe this treatment was effective? </label>
+             <input id="{{= prefix}}Result{{= suffix}}" name="recommended" type="text" class="recommendation" size="5em" /><br/> 
+              -->            
+
+              {{tmpl "#commonEventDataInputTemplate"}}
+        </script>
+
+       <!-- <script id="commonTreatmentEventTemplate" type="text/x-jquery-tmpl">
+            {{tmpl "#commonEventDataInputTemplate"}}        
+
+            {{tmpl "#recommendationsTemplate"}}
+
+        </script>-->
+
+        <script id="recommendationsTemplate" type="text/x-jquery-tmpl">        
+            <div class="recommendations">
+                {{tmpl($.extend($data, {
+                    "selectBaseId"  :   "recommended", 
+                    "selectName"    :   "recommended",
+                    "selectLabel"   :   "Do you recommend this treatment?"
+                })) "#trinarySelectTemplate"}}
+            </div>
+        </script>
+
+        <script id="descriptionTemplate" type="text/x-jquery-tmpl">
+            <hr />
+            <div>
+                <label for="{{= prefix}}Description{{= suffix}}">Description </label>
+                <textarea id="{{= prefix}}Description{{= suffix}}" name="description" rows="5"></textarea>
+            </div>  
+        </script>
+
+        <script id="commonEventDataInputTemplate" type="text/x-jquery-tmpl">
+            {{tmpl "#recommendationsTemplate"}}
+            {{tmpl "#descriptionTemplate"}}
+        </script>         
+
+        <script id="addEventFormControlsTemplate" type="text/x-jquery-tmpl">
+            <div class="formControls">
+                <a href="/add{{= eventType[0]}}EventForm" class="addEventFormLink {{= eventType[1]}}">Add {{= eventType[1]}}</a>
+                <button class="cancelButton {{= eventType[1]}}" style="display:none">Cancel</button>
+            </div>
+        </script>
+
+        <script id="modifyChaptersControlsTemplate" type="text/x-jquery-tmpl">
+            <div class="modifyChaptersControls"> 
+                <a href="/addChapterForm" class="addEventFormLink">Add Chapter</a>
+                <button class="cancelButton" style="display:none">Cancel</button>
+                <a href="/deleteChapter" class="deleteEventTrigger">Delete Chapter</a>
+            </div>
+        </script>        
+
+        <script id="addEventFormTemplate" type="text/x-jquery-tmpl">
+            <!--{{tmpl "#addEventFormControlsTemplate"}}-->
+            <form class="addEventForm {{= eventType[0]}}" style="display: none">
+                <fieldset>
+                    <legend>Add {{= eventType[1]}}</legend>
+
+                    <input id="newEventTitle{{= suffix}}" name="title" type="text" class="required" />
+
+                    <div class="newEventContent">
+                        <input type="hidden" id="newEventType" name="type" value="{{= eventType[2]}}" />
+                        
+                        <!--<label for="newEventTitle{{= suffix}}">Title </label><input id="newEventTitle{{=suffix}}" name="title" type="text" /><br/>-->
+
+                        <!--
+                        // add a "prefix" property to the template data - e.g. 
+                        // prefix="newChemo" or prefix="newDiagnosis" ...
+                        -->
+                        {{tmpl($.extend($data, {"prefix" : "new" + $data.eventType[0] })) "#add"+eventType[0]+"FormDetailsTemplate"}}
+
+                        <br/>
+                        <input id="add{{= eventType[0]}}Event" class="addEvent" type="submit" value="Add {{= eventType[1]}}"/><br/>
+                    </div>
+                </fieldset>
+            </form>
+        </script>
+
+
+        <script id="addChapterFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="-1" />
+
+            <div style="display: inline-block; float: left">
+                <label for="{{= prefix}}Start{{= suffix}}">Started:</label>
+                <input id="{{= prefix}}Start{{= suffix}}" type="text" name="start" class="startDate required date" style="z-index: 9999" />
+            </div>
+            <div id="endDateDiv" style="display: inline-block">            
+                <label for="{{= prefix}}End{{= suffix}}">Ended:</label>
+                <input id="{{= prefix}}End{{= suffix}}" type="text" name="end" class="endDate required date" />
+            </div>
+            <br/>
+            <label for="{{= prefix}}Description{{= suffix}}">Chapter </label><br/>
+            <!--
+             -- replace "description" which is an optional attribute of all events on the backend with "text" which is a required type detail of chapters -->
+            <!--<textarea id="{{= prefix}}Description{{= suffix}}" name="description" rows="5" class="required"></textarea><br/>-->
+            <textarea id="{{= prefix}}Description{{= suffix}}" name="text" rows="5" class="required"></textarea><br/>
+        </script>        
+
+        <script id="addChapterFormTemplate" type="text/x-jquery-tmpl">
+            <form class="addEventForm Chapter" style="display: none">
+                <input type="hidden" name="typeIndex" value="-1" />
+                <fieldset>
+                    <legend>Add Chapter</legend>
+
+                    <div class="newEventContent">
+                        <input type="hidden" id="newEventType" name="type" value="CHAPTER" />
+                        <!--
+                        // add a "prefix" property to the template data - e.g. 
+                        // prefix="newChemo" or prefix="newDiagnosis" ...
+                        -->
+
+                        <div class="slidingBox">
+                            <div class="formPart">
+
+                                <input id="newEventTitle{{= suffix}}" name="title" type="text" class="required" />
+
+                                {{tmpl($.extend($data, {"prefix" : "newChapter"})) "#addChapterFormPar1Template"}}
+
+                                <div class="formPartButtons">
+                                    <input type="button" class="nextFormPartButton" value="Next" />
+                                </div>
+                            </div>
+
+                            <div class="formPart">
+                                {{tmpl($.extend($data, {"prefix" : "newChapter"})) "#addChapterFormPar2Template"}}
+
+                                <div class="formPartButtons">
+                                    <input type="button" class="prevFormPartButton" value="Previous" />
+                                    <!-- <input type="button" class="nextFormPartButton" value="Next" />-->
+                                    <input id="addChapterEvent" class="addEvent" type="submit" value="Add Chapter"/>
+                                </div>
+                            </div> 
+                        </div>                       
+                    </div>
+                </fieldset>
+            </form>
+        </script>        
+
+        <script id="addChapterFormPar1Template" type="text/x-jquery-tmpl">
+            <div style="display: inline-block; float: left">
+                <label for="{{= prefix}}Start{{= suffix}}">Started: </label>
+                <input id="{{= prefix}}Start{{= suffix}}" type="text" name="start" class="startDate required date" style="z-index: 9999" />
+            </div>
+            <div id="endDateDiv" style="display: inline-block">            
+                <label for="{{= prefix}}End{{= suffix}}">Ended: </label>
+                <input id="{{= prefix}}End{{= suffix}}" type="text" name="end" class="endDate required date" />
+            </div>
+        </script>
+
+        <script id="addChapterFormPar2Template" type="text/x-jquery-tmpl">        
+            <label for="{{= prefix}}Description{{= suffix}}">Chapter </label><br/>
+            <textarea id="{{= prefix}}Description{{= suffix}}" name="description" rows="5"></textarea> 
+        </script>
+
+        <script id="addNewChapterTabTemplate" type="text/x-jquery-tmpl">
+            <label id="l_{{= tabTitleID}}"><input id="{{= tabTitleID}}" type="text" name="tabTitle" class="required maxLength-15 ui-button ui-widget ui-corner-all" /></label>
+        </script>        
+ 
+        <script id="addDiagnosisFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="0" />
+            <!--<input type="hidden" name="icon" value="/images/diagnosis_40_40.jpg"/>-->
+
+            <label for="{{= prefix}}Start{{= suffix}}" >Diagnosed on: </label>
+            <input id="{{= prefix}}Start{{= suffix}}" name="start" type="text" class="onDate required date"/> <!-- temporary --><br/>
+            <label for="{{= prefix}}Stage{{= suffix}}">at age: </label>
+            <input type="text" name="age" id="{{= prefix}}Stage{{= suffix}}" maxlength="3" size="2em" class="number"/>
+            <br/>
+
+            <label for="{{= prefix}}Stage{{= suffix}}" >Stage: </label>
+            <select id="{{= prefix}}Stage{{= suffix}}" name="stage">
+                <option value="UNKNOWN">Not Sure</option>
+                <option>I</option>
+                <option>II</option>
+                <option>III</option>
+                <option>IV</option>
+            </select>
+            
+            <h3>Where did you have this cancer?</h3>
+            <label for="{{= prefix}}DiseaseSitesLiver{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Liver" id="{{= prefix}}DiseaseSitesLiver{{= suffix}}"/> Liver</label>
+            
+
+            <label for="{{= prefix}}DiseaseSitesLymphNodes{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Lymph Nodes" id="{{= prefix}}DiseaseSitesLymphNodes{{= suffix}}"/> Lymph Nodes</label>
+            
+
+            <label for="{{= prefix}}DiseaseSitesPortalVein{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Portal Vein" id="{{= prefix}}DiseaseSitesPortalVein{{= suffix}}"/> Portal Vein</label>
+            
+
+            <label for="{{= prefix}}DiseaseSitesBileDuct{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Bile Duct" id="{{= prefix}}DiseaseSitesBileDuct{{= suffix}}"/> Bile Duct</label>
+            
+
+            <label for="{{= prefix}}DiseaseSitesGallBladder{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Gall Bladder" id="{{= prefix}}DiseaseSitesGallBladder{{= suffix}}"/> Gall Bladder</label>
+                                    
+
+            <label for="{{= prefix}}DiseaseSitesLungs{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Lungs" id="{{= prefix}}DiseaseSitesLungs{{= suffix}}"/> Lungs</label>
+                        
+
+            <label for="{{= prefix}}DiseaseSitesAbdomen{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Abdomen" id="{{= prefix}}DiseaseSitesAbdomen{{= suffix}}"/> Abdomen</label>
+            
+
+            <label for="{{= prefix}}DiseaseSitesPeritoneum{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Peritoneum" id="{{= prefix}}DiseaseSitesPeritoneum{{= suffix}}"/> Peritoneum</label>
+            
+
+            <label for="{{= prefix}}DiseaseSitesDiaphragm{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="Diaphragm" id="{{= prefix}}DiseaseSitesDiaphragm{{= suffix}}"/> Diaphragm</label>
+                        
+
+            <label for="{{= prefix}}DiseaseSitesOther{{= suffix}}" ><input name="diseaseSites" type="checkbox" value="other" id="{{= prefix}}DiseaseSitesOther{{= suffix}}"/> Other</label>
+            <br/>
+            
+            <!--<div class="diseaseSites">
+                <ol>
+                    {{each $data.getProperty("diseaseSites")}}
+                        <li>${$value}</li>
+                    {{/each}}
+                </ol>
+            </div>-->
+    
+
+            <!--   DO WE WANT TO KEEP SEPARATION BETWEEN pDescription and description?
+            {{if $data.getProperty("description")}}
+                <div>
+                    <br/>
+                    <label for="{{= prefix}}Description{{= suffix}}">Details: </label><br/>
+                    <div class="description">
+                        <p>{{html $data.getProperty("description").replace(/(\n)+/g, "</p><p>").replace(/\t/g, "") }}
+                        </p>
+                    </div>
+                </div>
+            {{/if}}                    
+            <br/>-->
+
+            {{tmpl "#descriptionTemplate"}}
+        </script>
+
+        <script id="oldAddDiagnosisFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="0" />
+            <!--<input type="hidden" name="icon" value="/images/diagnosis_40_40.jpg"/>-->
+
+            <label for="{{= prefix}}Start{{= suffix}}" >Diagnosed on: </label>
+            <input id="{{= prefix}}Start{{= suffix}}" name="start" type="text" class="onDate required date"/> <!-- temporary --><br/>
+            <label for="{{= prefix}}Stage{{= suffix}}">at age: </label>
+            <input type="text" name="age" id="{{= prefix}}Stage{{= suffix}}" maxlength="3" size="2em" class="number"/>
+            <br/>
+
+            <label for="{{= prefix}}Stage{{= suffix}}" >Stage: </label>
+            <select id="{{= prefix}}Stage{{= suffix}}" name="stage">
+                <option value="UNKNOWN">Not Sure</option>
+                <option>I</option>
+                <option>II</option>
+                <option>III</option>
+                <option>IV</option>
+            </select>
+            
+            <h3>Did you have... </h3>
+           <!--<label for="{{= prefix}}Metastatic{{= suffix}}">Metastases ("Mets") </label>
+            <input id="{{= prefix}}Metastatic{{= suffix}}" type="checkbox" name="metastatic"/>
+            <br/>-->
+            {{tmpl($.extend($data, {
+                "selectBaseId"  :   "Metastatic", 
+                "selectName"    :   "metastatic",
+                "selectLabel"   :   "Metastases (\"Mets\")"
+            })) "#trinarySelectTemplate"}}
+            <!--            
+            <label for="{{= prefix}}LymphNodes{{= suffix}}">Enlarged Lymph Nodes? </label>
+            <input id="{{= prefix}}LymphNodes{{= suffix}}" type="checkbox" name="lymphNodes"/>
+            <br/>
+            -->
+
+            {{tmpl($.extend($data, {
+                "selectBaseId"  :   "LymphNodes", 
+                "selectName"    :   "lymphNodes",
+                "selectLabel"   :   "Tumor in your Lymph Nodes?"
+            })) "#trinarySelectTemplate"}}
+
+            <!--
+            <label for="{{= prefix}}MajorVascularInvasion{{= suffix}}">Tumor in Major Blood Vessels?</label>
+            <input id="{{= prefix}}MajorVascularInvasion{{= suffix}}" type="checkbox" name="majorVascularInvasion"/>
+            <br/>
+            -->
+
+            {{tmpl($.extend($data, {
+                "selectBaseId"  :   "MajorVascularInvasion", 
+                "selectName"    :   "majorVascularInvasion",
+                "selectLabel"   :   "Tumor in Major Blood Vessels?"
+            })) "#trinarySelectTemplate"}}
+
+
+            <!--<label for="{{= prefix}}MicroVascularInvasion{{= suffix}}">Microscopic Vascular Invasion? </label>
+            <input id="{{= prefix}}MicroVascularInvasion{{= suffix}}" type="checkbox" name="microVascularInvastion"/>
+            <br/>-->
+
+            {{tmpl($.extend($data, {
+                "selectBaseId"  :   "MicroVascularInvasion", 
+                "selectName"    :   "microVascularInvasion",
+                "selectLabel"   :   "Microscopic Vascular Invasion? "
+            })) "#trinarySelectTemplate"}}
+
+
+            <!--    NOT IMPLEMENTING YET
+                    Sites of Disease: <br/><br/>
+                    <div class="diseaseSites">
+                        <ol>
+                            {{each $data.getProperty("diseaseSites")}}
+                                <li>${$value}</li>
+                            {{/each}}
+                        </ol>
+                    </div>
+                    <br/>-->
+
+            <!--   DO WE WANT TO KEEP SEPARATION BETWEEN pDescription and description?
+            {{if $data.getProperty("description")}}
+                <div>
+                    <br/>
+                    <label for="{{= prefix}}Description{{= suffix}}">Details: </label><br/>
+                    <div class="description">
+                        <p>{{html $data.getProperty("description").replace(/(\n)+/g, "</p><p>").replace(/\t/g, "") }}
+                        </p>
+                    </div>
+                </div>
+            {{/if}}                    
+            <br/>-->
+
+            {{tmpl "#commonEventDataInputTemplate"}}
+        </script>
+
+        <script id="addSurgeryFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="1" />
+            <!--<input type="hidden" name="icon" value="/images/surgery_40_40.jpg"/>-->
+
+            {{tmpl "#singleDateInputTemplate"}}
+            
+            <label for="{{= prefix}}Surgeon{{= suffix}}">Surgeon: </label>
+            <input id="{{= prefix}}Surgeon{{= suffix}}" type="text" name="surgeon" class="doctor surgeon name" /><br/>                
+
+            <label for="{{= prefix}}Hospital{{= suffix}}">Hospital: </label>
+            <input id="{{= prefix}}Hospital{{= suffix}}" type="text" name="hospital" class="hospital" /><br/>
+            <label for="{{= prefix}}Location{{= suffix}}">Location: </label>
+            <input id="{{= prefix}}Location{{= suffix}}" type="text" name="location" class="location" /><br/>
+            
+            <hr />
+            <label>Recovery time:</label><br/>
+            <label for="{{= prefix}}RecoveryTimeHospital{{= suffix}}">  * in hospital: </label>
+            <input "{{= prefix}}RecoveryTimeHospital{{= suffix}}" type="text" name="recoveryTimeHospital" class="recoveryTimeHospital"  />
+            <br/>
+
+
+            <!--
+                /* TOO COMPLICATED FOR NOW  */            
+            <div class="recovery">
+                <input "{{= prefix}}RecoveryTimeHospital{{= suffix}}" type="text" name="recoveryTimeHospital" class="recoveryTimeHospital"  />
+                <select class="timeUnitsSelect">
+                    <option>days</option>
+                    <option>weeks</option>
+                    <option>months</option>             
+                </select>
+            </div>
+            <br/>
+            -->
+
+            <label for="{{= prefix}}RecoveryTimeHome{{= suffix}}">  * at home: </label>
+            <input id="{{= prefix}}RecoveryTimeHome{{= suffix}}" type="text" name="recoveryTimeHome" class="recoveryTime" />
+            
+
+            <!--
+                /* TOO COMPLICATED FOR NOW  */
+            <div class="recovery">
+                <input id="{{= prefix}}RecoveryTimeHome{{= suffix}}" type="text" name="recoveryTimeHome" class="recoveryTime" />            
+                <select class="timeUnitsSelect">
+                    <option>days</option>
+                    <option>weeks</option>
+                    <option>months</option>             
+                </select>
+            </div>
+            <br/>
+            -->
+
+            {{tmpl "#surgeryResultsEventTemplate"}}                     
+        </script>
+                    
+        <script id="addChemoFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="2" />
+            <!--<input type="hidden" name="icon" value="/images/chemo_40_40.jpg"/>-->
+
+            {{tmpl "#dateRangeInputTemplate"}}
+
+            <div>
+                <label for="{{= prefix}}Chemo{{= suffix}}">Chemotherapy: </label>
+                <input id="{{= prefix}}Chemo{{= suffix}}" type="text" name="chemo" class="chemoProtocol" /><br/>
+            </div>
+
+            <div>
+                <label for="{{= prefix}}Oncologist{{= suffix}}">Oncologist: </label>
+                <input id="{{= prefix}}Oncologist{{= suffix}}" type="text" name="oncologist" class="oncologist chemo doctor" /><br/>
+            </div>
+
+            {{tmpl "#chemoResultsEventTemplate"}}            
+        </script>     
+
+        <script id="addRadiationFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="3" />
+
+            {{tmpl "#dateRangeInputTemplate"}}
+
+            <div>
+                <label for="{{= prefix}}Oncologist{{= suffix}}">Oncologist: </label>
+                <input id="{{= prefix}}Oncologist{{= suffix}}" type="text" name="oncologist" class="oncologist radiation doctor" /><br/>
+            </div>
+
+            <hr />
+           {{tmpl "#commonEventDataInputTemplate"}}
+        </script>
+
+        <script id="addImmunoFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="4" />
+
+            {{tmpl "#dateRangeInputTemplate"}}
+          
+            {{tmpl "#commonEventDataInputTemplate"}}
+        </script>  
+
+        <script id="addTestFormDetailsTemplate" type="text/x-jquery-tmpl">
+            <input type="hidden" name="typeIndex" value="5" />
+
+            {{tmpl "#singleDateInputTemplate"}}
+            <!--
+            <label for="{{= prefix}}Icon{{= suffix}}">Test type: </label>
+            <select id="{{= prefix}}Icon{{= suffix}}" name="icon">
+                <option value="">--Select One--</option>
+                <option value="/images/ctscan_40_40.jpg">CT Scan</option>
+                <option value="/images/mri_40_40.jpg">MRI</option>
+                <option value="/images/ultrasound_40_40.jpg">Ultrasound</option>
+            </select>
+            -->
+            
+            <label for="{{= prefix}}TestType{{= suffix}}">Test type: </label>
+            <select id="{{= prefix}}TestType{{= suffix}}" name="testType">
+                <option value="">--Select One--</option>
+                <option value="CT_SCAN">CT Scan</option>
+                <option value="MRI">MRI</option>
+                <option value="ULTRASOUND">Ultrasound</option>
+            </select>
+
+
+
+            <!-- not yet supported - plain text needs to be validated carefully 
+            <hr />
+            <label for="{{= prefix}}Result{{= suffix}}" >Result: </label>
+            <input id="{{= prefix}}Result{{= suffix}}" name="result" type="text" class="result" />
+            -->
+
+            <!--</table>-->
+
+            {{tmpl "#descriptionTemplate"}}
+        </script>               
+        <!--    END:    jQuery Templates for input forms       -->

@@ -1,0 +1,10 @@
+      
+      
+      <!-- libs.js -->
+      <script src="/js/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+      <script src="/js/jquery.tmpl.js" type="text/javascript"></script>
+      <script src="/js/date.format.js" type="text/javascript"></script> 
+      <script src="/js/jquery.watermarkinput.js" type="text/javascript"></script>
+      <script src="/js/jquery.validate.js" type="text/javascript"></script>
+
+	<script src="/js/timeline.concatenated.js" type="text/javascript"></script>

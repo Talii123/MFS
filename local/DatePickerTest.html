@@ -1,0 +1,36 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>Date Picker Test</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+       <!-- <link class="jqueryUICss" type="text/css" rel="stylesheet" href="css/default/jquery-ui-1.8.23.custom.css" />-->
+
+<link class="jqueryUICss" type="text/css" rel="stylesheet" href="css/vader2/jquery-ui-1.9.2.custom.css" />       
+        
+
+		<script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
+		<script src="js/jquery-ui-1.9.1.custom.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function() {
+	            $.datepicker.setDefaults({
+	                altField    :   $(this).prevAll(".date")[0],
+	                altFormat   :   "MM d, yy",
+	                showOn      :   "both",
+	                buttonImage :   "images/calendar.gif",
+	                buttonImageOnly     :   true,
+	                changeMonth :   true,
+	                changeYear  :   true  
+	            });
+
+
+				$("#datePicker").after('<span class="datePicker" style="float: right;"></span>').datepicker();
+			});
+
+		</script>
+	</head>
+	<body>
+		<div /><div /><div /><div /><div /><div />
+		<p>Paragraph</p><p>Paragraph</p><p>Paragraph</p><p>Paragraph</p><p>Paragraph</p>
+		<input id="datePicker"/>
+	</body>
+</html>

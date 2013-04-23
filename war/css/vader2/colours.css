@@ -1,0 +1,85 @@
+
+/* colours.css */
+
+body {
+	font-size: 14px;
+	background-color: #3BAAE3;
+	color: #000;	
+}
+
+/* overrides from jquery UI css */
+
+.ui-widget {
+	font-family: papyrus, Verdana, Geneva, sans-serif;
+}
+
+/* end overrides */
+
+#header {
+	border: 1px solid #404040; 
+	background: #121212 url(images/ui-bg_gloss-wave_0_121212_500x100.png) 50% top repeat-x; 
+	color: #eeeeee;
+}
+
+#header li:hover {
+	background-color: #3BAAE3;
+	/*color: #000;*/
+}
+
+/* overrides from jquery UI css */
+.ui-tabs {
+	padding: 0;
+}
+
+.ui-dialog {
+	padding: 0;
+}
+
+.ui-dialog .ui-dialog-content {
+	background-color: #DEDEDE;
+	color: #000;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+	background-color: #3BAAE3;
+	background-image: none;
+	color: #fff;
+}
+/* end overrides */
+
+#designedByDialog a {
+	color: #000;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #3BAAE3;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+/* for editing UI */
+.eventControls .button {
+	background-color: #DEDEDE;
+	color: #000000;
+}
+
+.eventControls .button:hover {
+	background-color: #EEEEEE;
+}
+
+#newChapterTabTitle {
+  background-color: #000;
+  color: #FFF;
+  border: 3px dashed #3BAAE3;
+}
+
+

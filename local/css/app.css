@@ -1,0 +1,310 @@
+
+body {
+	font-size: 14px;
+	font-family: papyrus, Verdana, Geneva, sans-serif;
+}
+
+/* overrides from jquery UI css */
+.ui-tabs .ui-tabs-nav li a {
+	/* override default padding to make tabs more compact so that they fit better */
+	padding: 0.4em 0.471em;
+}
+.ui-tabs .ui-tabs-panel {
+	/* override default padding to make accordion panels fit better */
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/*.ui-widget {
+	font-family: papyrus, Verdana, Geneva, sans-serif;
+}*/
+
+.ui-tabs-nav {
+	white-space: nowrap;
+}
+/* end overrides */
+
+#eventInfoBox .eventTypeContent{
+	/*font-family: Helvetica, Arial, sans-serif;*/
+	font-family: Georgia, serif;
+}
+
+
+#header .menu {
+	margin: 0;
+}
+
+#header .menu.right {
+	float: right;
+	/*margin-right: 140px;*/
+}
+
+.noBullets {
+	list-style-type: none;
+}
+
+#header li {
+	float: left;
+	padding: 5px 10px;
+	/*font-family: fantasy;*/
+	font-size: 1em;
+	cursor: pointer;
+}
+
+
+#header li a {
+	background-color: inherit;
+	color: inherit;
+	text-decoration: none;
+}
+
+
+#heroes {
+	list-style-type: none;
+}
+#heroes li {
+	display: inline;
+	margin: 5px;
+}
+
+pre {
+	/*font-family:  Verdana, Helvetica, Geneva, Trebuchet MS, sans-serif;*/
+	/*font-family: fantasy;*/
+	font-family: papyrus, Verdana, Geneva, sans-serif;
+	font-size: 1.07em;
+	margin-left: 1em;
+}
+
+#heroes {
+	font-family: papyrus, Verdana, Geneva, sans-serif;
+	font-size: 1.07em;
+	margin-left: 1em;
+}
+
+#header {
+	padding: 5px 0px 5px 0px; 
+	position: fixed; 
+	top: 0px; 
+	left: 0px; 
+	z-index: 9998; 
+	width: 100%; 
+	/*border: none; */
+	max-height: 4.75em;	
+    text-align: center;
+}
+
+
+a {
+	padding: 3px 4px 0px 4px;
+}
+
+.buttons {
+	float: right;
+	padding-right: 3px;
+}
+
+.dialog {
+	display: none;
+}
+
+h1.title {
+	/*font-family: fantasy;*/
+	clear: both; 
+	position: relative; 
+	top: -0.5em;
+}
+
+
+#sidebar {
+	float: right;
+	width: 440px;
+	margin: 10px 0px;
+}
+/* use this to make the event info box the same height as the timeline
+.tabs > div {
+	height: 230px;
+	padding: 4px;
+	overflow-y: auto;	
+}
+*/
+
+/* use this to put an arrow button to the left of spans
+#surgery1 span {
+    left: 0.2em;
+    margin: -8px 5px 0 0;
+    position: absolute;
+    top: 50%;
+}
+
+#surgery1 {
+    padding: 0.4em 1em 0.4em 20px;
+    position: relative;
+    text-decoration: none;
+}
+*/
+
+.eventTypeVisibilityToggle .ui-button .ui-button-text {
+	padding: 0.1em 0.4em;
+	margin: 0;
+}
+
+.eventTypeVisibilityToggle .visibilityToggleLabel {
+	font-size: 1.1em;
+	vertical-align: middle;	
+}
+
+/*.description > p {*/
+.eventContent {
+	line-height: 1.25em;
+}
+
+/* needed to make bubble appear on top of header */
+body div.simileAjax-bubble-container {
+	z-index: 9999;
+}
+
+
+.hidden {
+	display: none;
+}
+
+#my-timeline, #patientNotesContainer {
+	/*height: 315px; 
+	/*border: 1px solid #aaa;*/
+	height: 20.45em;
+	border: 1px solid #000;
+	padding: 3px;
+	margin: 11px 450px 11px 10px;
+}
+#patientNotesContainer {
+	/*overflow-y: auto; */
+	padding: 0px;
+}
+#patientNotesMain {
+	/*height: 260px;  /* #patientNotesContainer.height - #patientNotesHeader.height - margins */	
+	height: 16.45em;
+	overflow-y: auto;
+	padding-left: 1em;
+	/*margin-top: 1em;
+	margin: 10px 0px 10px 10px;*/
+}
+
+#patientNotesHeader {
+  height: 3em;
+  margin: 1em 0 0;
+  padding-left: 1em;
+  text-align: center;
+}
+
+#patientNotesHeader h3 {
+  display: inline-block;
+  float: left;
+  margin: 0 0;
+  width: 200px;
+}
+
+#patientNotes {
+    margin-left: 210px;
+    padding: 0px 50px 0px 10px;
+	font-size: 20px;
+	max-height: 16.45em;
+	/*font-family: Verdana, Helvetica, Geneva, Trebuchet MS, sans-serif;
+	font-family: fantasy;*/
+}
+/* use this if showing multiple paragraphs at once 
+#patientNotes > p:nth-child(1) {
+	margin-top: 5px;
+}*/
+#patientNotes p {
+	margin-top: 5px;
+}
+.center {
+	text-align: center;
+}
+.eventTypeVisibilityToggle {
+	text-align: center;	
+}
+
+
+.event {
+	border-top: 1px dashed;
+}
+
+#settingsDialog table {
+	margin-left: auto;
+margin-right: auto;
+margin-top: 1.5em;
+}
+
+.tabs li, #patientNotesNav li {
+	list-style: none outside none;
+}
+
+#patientNotesNav li {
+	margin: 10px 0px;
+}
+#patientNotesNav {
+	width: 200px;
+	float: left;
+	/*background-color: #fdcc00;
+	border: 1px solid #fdcc00;
+	margin: 0px 10px;*/
+	border: none;
+	max-height: 16.45em;
+	overflow-y: auto; 
+}
+#patientNotesNav label {
+	margin: 8px 10px;
+	white-space: nowrap;
+}
+#patientNotesNav label span{
+	width: 110px;
+}
+#patientNotesNav ul {
+	padding-left: 10px;
+}
+/* doesn't work properly if using background highlighting */
+/*.eventTitle {
+	position: relative;
+	left: -1.5em;
+}*/
+
+li h3 {
+	position: relative;
+	left: -1.5em;	
+}
+
+.eventContent {
+	padding-right: 25px;
+}
+
+#eventInfoBox .eventTypeContent {
+	height: 573px;
+	overflow-y: auto;
+	padding-top: 0;
+}
+
+
+#designedByDialog {
+	font-size: 1.2em;	
+}
+#designedByDialog .TalFriedman {
+	font: bold 1.6em papyrus, Verdana, Geneva, sans-serif;
+}
+
+#designedByDialog .role {
+	font-weight: bold;
+    margin-top: -0.75em;
+}
+
+#designedByDialog .email {
+	font-size: 0.8em;
+}
+
+/* opacity fix for old IEs - needed for highlighted chapters to work properly */
+.timeline-highlight-decorator {
+	opacity: 0.3 !important;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)" !important;  /* IE8 hack */
+	filter: alpha(opacity=30) !important;	/* IE5-7 hack */
+}
+
