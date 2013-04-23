@@ -1,4 +1,10 @@
-<!-- Indices written at Fri, 19 Apr 2013 21:30:33 EDT -->
+<!-- Indices written at Tue, 23 Apr 2013 16:21:21 EDT -->
 
-<datastore-indexes/>
+<datastore-indexes>
 
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="AgreementJDO" ancestor="true" source="auto">
+        <property name="timeOfAgreement" direction="desc"/>
+    </datastore-index>
+
+</datastore-indexes>
