@@ -28,7 +28,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>BetaBot found an error</title>
+	<title>Oops!  That's an error.</title>
 	<style>
 	      html { 
 	      	height:100%;
@@ -58,10 +58,22 @@
 
 </head>
 <body>
-	<span>Oops, looks like you found an </span><span style="color:red;">ERROR! </span>
-	<span>Our BetaBot still has a few kinks to work out.</span><br><br>
-
-	<span>We're sorry for any inconvenience and are hard at work to make things better!</span>
+	<c:set var="errorsMap" value='${requestScope["error"]}'  />
+	<c:choose>
+		<c:when test="${!empty errorsMap}">
+			<span><c:out value="${errorsMap.msg}" /></span>
+			<c:if test="${!empty errorsMap.gotoLink}">
+				<br/><br/>
+				<span><a href='<c:out value="${errorsMap.gotoLink}" />'><c:out value="${errorsMap.gotoText}" /></a></span>
+			</c:if>
+		</c:when>
+		<c:otherwise>
+			<span>Oops, looks like you found an </span><span style="color:red;">ERROR! </span>
+			<span>Our BetaBot still has a few kinks to work out.</span><br><br>
+	
+			<span>We're sorry for any inconvenience and are hard at work to make things better!</span>
+		</c:otherwise>
+	</c:choose>
 	
 	<img class="betaBot" src="/images/repairman.jpg" alt="Our Loveable BetaBot" />
 	<img class="beta" src="/images/betablack.png" />
