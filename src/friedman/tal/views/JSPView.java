@@ -11,7 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import friedman.tal.mfs.timelines.TimelineResource;
+
 public class JSPView implements IView {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(JSPView.class);
+
 	
 	private final String _jspPath;
 	private  HttpServletRequest _request;
@@ -45,7 +53,7 @@ public class JSPView implements IView {
 			MultivaluedMap<String, Object> httpHeaders,
 			OutputStream entityStream) 
 					throws ServletException, IOException {
-		
+		LOGGER.debug("\n\n rendering myself ({}) via a call to writeTo.. \n\n", this._jspPath);
 		this.render();
 	}
 

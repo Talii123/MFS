@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +18,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
 import com.google.appengine.api.users.UserServiceFactory;
@@ -26,6 +29,7 @@ import friedman.tal.mfs.agreements.AgreementFormResource;
 import friedman.tal.mfs.agreements.AgreementResource;
 import friedman.tal.mfs.agreements.IAgreementForm;
 import friedman.tal.mfs.exceptions.ConsentNotGivenException;
+import friedman.tal.mfs.exceptions.UserAlreadyHasTimelineException;
 import friedman.tal.mfs.resources.ITimelineResource;
 import friedman.tal.mfs.resources.IUserAccountResource;
 import friedman.tal.mfs.timelines.TimelineResource;
@@ -116,7 +120,7 @@ public class UserAccountResource extends Resource<IUserAccount> implements IUser
 	@POST
 	@Path(IUserAccountResource.RESOURCE_URL)
 	@Consumes(Utils.HTML_FORM_MEDIATYPE)
-	public Response signUp(@Context UriInfo uriInfo, MultivaluedMap<String, String> aSignUpForm) 								
+	public Response signUp(@Context UriInfo uriInfo, @Context HttpServletRequest request, @Context HttpServletResponse response, MultivaluedMap<String, String> aSignUpForm) 								
 			throws ServletException, IOException, URISyntaxException {
 
 		String locationURI;
@@ -183,8 +187,7 @@ public class UserAccountResource extends Resource<IUserAccount> implements IUser
 			
 			locationURI = uriInfo.getBaseUri() + IUserAccountResource.RESOURCE_URL.substring(1) + "?errorMsg=" + URLEncoder.encode(ConsentNotGivenException.DEFAULT_ERROR_MSG, "UTF-8");
 			timelineCreationResponse = Response.seeOther(new URI(locationURI)).build();
-		} 
-		finally {
+		} finally {
 			userDAO.cleanupIfLocalTrxn();
 		}		
 		

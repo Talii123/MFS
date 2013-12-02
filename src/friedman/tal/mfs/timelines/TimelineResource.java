@@ -256,7 +256,11 @@ public class TimelineResource extends Resource<ITimeline> implements ITimelineRe
 
 	private void checkHasNoTimeline(IUserAccount aUser) throws UserAlreadyHasTimelineException {
 		if (aUser.getTimeline() != null) {
-			throw new UserAlreadyHasTimelineException();
+			IResourceDAOContext context = getDAOContext();
+			UserAlreadyHasTimelineException exception = new UserAlreadyHasTimelineException();
+			exception.setRequestAndResponse(context.getRequest(), context.getResponse());
+			
+			throw exception;
 		}
 	}
 	
