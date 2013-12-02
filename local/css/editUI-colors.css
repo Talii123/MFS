@@ -1,0 +1,8 @@
+.eventControls .button {
+	background-color: #DEDEDE;
+	color: #000000;
+}
+
+.eventControls .button:hover {
+	background-color: #FDCC00;
+}

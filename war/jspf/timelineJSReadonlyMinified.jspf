@@ -1,0 +1,28 @@
+
+
+<script>
+    disableUI = function($event) {                
+        $event.preventDefault();
+        alert("The app is not yet active.  Please wait a few moments - it will be ready very soon.");
+    };    
+
+	function onFail(jqxhr, settings, exception) {
+        console.error("error happened while loading script: ", exception, "\njqxhr: ", jqxhr, "\nsettings: ", settings);
+    };            
+    
+    // from jQuery website, with minor alteration that options override defaults
+    $.getCachedScript = function(url, options) {
+        // allow user to set any option except for dataType, cache, and url
+            options = $.extend({
+                dataType: "script",
+                cache: true,
+                url: url
+            }, 
+            options);
+        // Use $.ajax() since it is more flexible than $.getScript
+        // Return the jqXHR object so we can chain callbacks
+        return jQuery.ajax(options);
+    };   
+    $.getCachedScript("/js/all-viewer-beta.js").fail(onFail);//.done(onDone);
+    
+</script>

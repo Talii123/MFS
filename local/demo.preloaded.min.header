@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>My Fibrolamellar Story</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+        <link class="jqueryUICss" type="text/css" rel="stylesheet" href="css/default/jquery-ui-1.8.23.custom.css" />
+        <!--  <link type="text/css" rel="stylesheet" href="css/default/theme.css" />
+        <link id="appCss" type="text/css" rel="stylesheet" href="css/app.css" />-->
+        <link id="appCss" type="text/css" rel="stylesheet" href="css/timelineApp.css" />
+        <link class="coloursCss" type="text/css" rel="stylesheet" href="css/default/colours.css" />              
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>        
+        <script>
+        	var onFail = function(jqxhr, settings, exception) {
+                console.error("error happened while loading script: ", exception, "\njqxhr: ", jqxhr, "\nsettings: ", settings);
+            };
+            var onDone = function(script, textStatus) {
+            	console.log("done loading script; \ntextStatus=", textStatus, "\n script={\n", script, "\n}");
+            }
+            
+            $.getScript("js/all-preloaded.js").fail(onFail).done(onDone);
+
+        </script>

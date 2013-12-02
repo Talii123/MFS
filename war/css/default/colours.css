@@ -1,0 +1,90 @@
+
+/* colours.css */
+
+body {
+	font-size: 14px;
+	background-color: #fdcc00;
+	color: #000;	
+}
+
+/* overrides from jquery UI css */
+
+.ui-widget {
+	font-family: papyrus, Verdana, Geneva, sans-serif;
+}
+
+/*.ui-widget-header .ui-icon {background-image: url(images/ui-icons_fdcc00_256x240.png); }*/
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(images/ui-icons_000000_256x240.png); }
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {border: 1px solid #fdcc00; background: #000000;  color: #fdcc00; }
+
+/* end overrides */
+
+#header li:hover {
+	background-color: #fdcc00;
+	color: #000;
+}
+
+#header {
+	border: 1px solid #fdcc00; 
+	background: #000000 url(images/ui-bg_gloss-wave_1fdcc006_000000_500x100.png) 50% top repeat-x; 
+	color: #fdcc00;
+}
+
+
+.timeline-highlight-decorator.ui-state-highlight {
+	background-color: #fdcc00;
+}
+
+/* overrides from jquery UI css */
+.ui-tabs {
+	padding: 0.1em;
+}
+
+.ui-dialog .ui-dialog-content {
+	background-color: #DEDEDE;
+	color: #000;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+	background-color: #000;
+	background-image: none;
+	color: #fdcc00;
+}
+/* end overrides */
+
+#designedByDialog a {
+	color: #000;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #fdc000;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+
+/* for editing UI */
+.eventControls .button {
+	background-color: #DEDEDE;
+	color: #000000;
+}
+
+.eventControls .button:hover {
+	background-color: #FDCC00;
+}
+
+#newChapterTabTitle {
+  background-color: black;
+  color: #FDCC00;
+  border: 3px dashed #FDCC00;
+}

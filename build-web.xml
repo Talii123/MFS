@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="My Fibrolamellar Cancer Story" default="deploy.app" basedir=".">
+	
+	<!-- set global properties for this build -->
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	<property name="war" location="war" />
+	<property name="dist" location="${war}" />
+	<!--<property name="home" location="local" />-->
+	<property name="home" location="war" />
+	<property name="yui-compressor-path" location="/Users/Talii/Dropbox/softDevUtilsDist" />
+	<property name="timeline-dir" location="${home}/javascripts/timeline" />
+	<property name="demo-file-name" value="demoPreRenderedPreLoaded.js" />
+	<!--<property name="demo-file-name" value="demoViewer.js" />-->
+	<property name="editable-demo-name" value="play" />
+	<property name="all-editable-name" value="creator" />
+	<property name="all-readonly-name" value="viewer" />
+	<property name="suffix" value="-beta" />
+
+	<target name="init" depends="clean">
+		<tstamp />
+		<mkdir dir="${build}/js"/>
+		<mkdir dir="${build}/js/cat"/>
+		<mkdir dir="${build}/js/min"/>
+		<mkdir dir="${build}/css"/>
+	</target>
+
+	<!-- TODO: move watermark and validate to editable base -->
+   	<target name="js.concatenate.lib" depends="init">
+   		<!-- since libs.js will hardly ever change, don't put it in the "cat" subdirectory, which gets re-created on every build.  
+   		To refresh libs.js, just do a "clean-all" before building. -->
+   		<concat destfile="${build}/js/libs.js" fixlastline="yes">
+   			<!--<filelist dir="${home}/js" files="window.log.min.js jquery-1.8.0.min.js, jquery-ui-1.9.1.custom.min.js, jquery.tmpl.min.js, date.format.min.js" />-->
+   			<filelist dir="${home}/js" files="jquery-ui-1.9.2.custom.js, jquery.tmpl.js, date.format.js, jquery.watermarkinput.js, jquery.validate.js" />   			
+   		</concat>
+   	</target>
+	
+	<target name="readonly-base">
+		<concat destfile="${build}/js/cat/readonly-base.js" fixlastline="yes">
+			<filelist dir="${home}/js" files="noconsole.js"/>
+			<!--<filelist dir="${home}/js" files="themer.js, cancer_events_source.js, sandbox.js, common-module.js, timeline-view-module.js, chapters-view-module.js" />-->
+			<filelist dir="${home}/js" files="themer-survey.js, cancer_events_source.js, sandbox.js, common-module.js, timeline-view-module.js, chapters-view-module.js" />
+		</concat>
+	</target>
+	
+	<target name="editable-base" depends="readonly-base">
+		<concat destfile="${build}/js/cat/editable-base.js" fixlastline="yes">
+			<filelist dir="${build}/js/cat" files="readonly-base.js" />
+			<!-- shouldn't common-module.js be in readonly-base? -->
+			<filelist dir="${home}/js" files="timeline-edit-module.js, chapters-edit-module.js" />
+		</concat>
+	</target>	
+	
+   	<target name="js.concatenate.demo" depends="readonly-base">
+   		<concat destfile="${build}/js/cat/demo.concatenated.js" fixlastline="yes">
+   			<filelist dir="${build}/js/cat" files="readonly-base.js" />
+   			<!--<filelist dir="${home}/js" files="demo.js" />-->
+   			<filelist dir="${home}/js" files="${demo-file-name}" />
+   			<filelist dir="${home}/js" files="UIunlock.js" />
+   			<!--<filelist dir="${home}/js" files="demo-dao-module.js, ${demo-file-name}, UIunlock.js" />-->
+   		</concat>
+	</target>
+	
+	<target name="js.minify.demo" depends="js.concatenate.demo">
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${build}/js/cat/demo.concatenated.js -o ${build}/js/min/demo.min.js" />
+		</java>
+	</target>
+	
+	<target name="js.concatenate.editableDemo" depends="editable-base">
+   		<concat destfile="${build}/js/cat/editableDemo.concatenated.js" fixlastline="yes">
+   			<filelist dir="${build}/js/cat" files="editable-base.js" />
+   			<!--<filelist dir="${home}/js" files="dummy-dao-module.js, appEditor.js, UIunlock.js" />-->
+   			<filelist dir="${home}/js" files="editable-demo-dao-module.js, appEditor.js, UIunlock.js" />   			
+   		</concat>		
+	</target>
+	
+	<target name="js.minify.editableDemo" depends="js.concatenate.editableDemo">
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${build}/js/cat/editableDemo.concatenated.js -o ${build}/js/min/editableDemo.min.js" />
+		</java>		
+	</target>	
+	
+	<!-- explicitly depend on both readonly-base and editable-base in case something changes and readonly-base ends up containing code not in editable-base -->
+	<target name="js.concatenate.app" depends="readonly-base, editable-base">
+   		<concat destfile="${build}/js/cat/${all-editable-name}.concatenated.js" fixlastline="yes">
+   			<filelist dir="${build}/js/cat" files="editable-base.js" />
+   			<filelist dir="${home}/js" files="dao-module.js, appEditor.js, UIunlock.js" />
+   		</concat>
+   		<concat destfile="${build}/js/cat/${all-readonly-name}.concatenated.js" fixlastline="yes">
+   			<filelist dir="${build}/js/cat" files="readonly-base.js" />
+   			<filelist dir="${home}/js" files="dao-module.js, appViewer.js, UIunlock.js" />
+   		</concat>		
+	</target>		
+	<target name="js.minify.app" depends="js.concatenate.app">
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${build}/js/cat/${all-readonly-name}.concatenated.js -o ${build}/js/min/${all-readonly-name}.min.js" />
+		</java>
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${build}/js/cat/${all-editable-name}.concatenated.js -o ${build}/js/min/${all-editable-name}.min.js" />
+		</java>		
+	</target>		
+		
+	
+   	<!--<target name="js.concatenate.included.all" depends="js.concatenate.lib, js.concatenate.timeline">-->
+	<target name="js.concatenate.included.all" depends="js.concatenate.lib">
+   		<concat destfile="${build}/js/included.js" fixlastline="yes">
+   			<filelist dir="${build}/js/" files="libs.js" />
+   			<filelist dir="${build}/js/" files="timeline.concatenated.js" />
+   		</concat>
+   	</target>	
+	
+	<target name="js.minify.included.all" depends="js.concatenate.included.all">
+   		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${build}/js/included.js -o ${build}/js/included.min.js" />
+		</java>
+	</target>	
+	
+	<!--<target name="js.assemble.demo" depends="js.minify.included.all, js.minify.demo">-->
+	<target name="js.assemble.demo" depends="js.minify.demo">
+		<concat destfile="${build}/js/min/all-demo${suffix}.js" fixlastline="yes">
+			<filelist dir="${build}/js" files="included.min.js" />
+			<filelist dir="${build}/js/min" files="demo.min.js" />
+		</concat>
+	</target>
+	
+	<!--<target name="js.assemble.editableDemo" depends="js.minify.included.all, js.minify.editableDemo">-->
+	<target name="js.assemble.editableDemo" depends="js.minify.editableDemo">
+		<concat destfile="${build}/js/min/all-${editable-demo-name}${suffix}.js" fixlastline="yes">
+			<filelist dir="${build}/js" files="included.min.js" />
+			<filelist dir="${build}/js/min" files="editableDemo.min.js" />		
+		</concat>
+	</target>
+	
+	<!--<target name="js.assemble.app" depends="js.minify.included.all, js.minify.app">-->
+	<target name="js.assemble.app" depends="js.minify.app">
+		<concat destfile="${build}/js/min/all-${all-readonly-name}${suffix}.js" fixlastline="yes">
+			<filelist dir="${build}/js" files="included.min.js" />
+			<filelist dir="${build}/js/min" files="${all-readonly-name}.min.js" />
+		</concat>
+		<concat destfile="${build}/js/min/all-${all-editable-name}${suffix}.js" fixlastline="yes">
+			<filelist dir="${build}/js" files="included.min.js" />
+			<filelist dir="${build}/js/min" files="${all-editable-name}.min.js" />
+		</concat>			
+	</target>	
+	
+	
+	<target name="deploy.editableDemo" depends="js.assemble.editableDemo, css.minify.editable, deploy-dev" >
+		<tstamp />
+		<copy todir="${dist}/css">
+			<fileset dir="${home}/css">
+					<!--  for now, allow separate files to be loaded
+					
+					<include name="**/images/*" />
+					<exclude name="colours.css, jquery-ui-1.8.23.custom.css, jquery-ui-1.9.1.custom.min.css, demo.css"/>-->
+				
+			</fileset>
+			<!--<filelist dir="${home}/css" files="app.css" />-->
+			<fileset file="${build}/css/timelineEditableApp.min.css" />
+		</copy>
+		<copy todir="${dist}/js" >
+			<fileset dir="${build}/js/min" includes="all-${editable-demo-name}${suffix}.js" />
+			<!--<globmapper from="*.js" to="*-${DSTAMP}${TSTAMP}.js" />-->
+		</copy>
+		<copy todir="${dist}/json">
+			<fileset dir="${home}/json" />
+		</copy>
+		<copy file="${home}/Canvas.html" tofile="${dist}/Canvas.html" />
+	</target>		
+
+	<target name="deploy.app" depends="js.assemble.app, css.minify.all, deploy-dev" >
+		<tstamp />
+		<copy todir="${dist}/css">
+			<fileset dir="${home}/css">
+					<!--  for now, allow separate files to be loaded
+					
+					<include name="**/images/*" />
+					<exclude name="colours.css, jquery-ui-1.8.23.custom.css, jquery-ui-1.9.1.custom.min.css, demo.css"/>-->
+				
+			</fileset>
+			<!--<filelist dir="${home}/css" files="app.css" />-->
+			<fileset file="${build}/css/timelineEditableApp.min.css" />
+		</copy>
+		<copy todir="${dist}/js" >
+			<filelist dir="${build}/js/min" files="all-${all-readonly-name}${suffix}.js, all-${all-editable-name}${suffix}.js" />
+		</copy>
+		<copy todir="${dist}/json">
+			<fileset dir="${home}/json" />
+		</copy>
+	</target>			
+	
+	<target name="deploy.demo" depends="js.assemble.demo, css.minify.readonly" >
+		<tstamp />
+		<copy todir="${dist}/css">
+			<fileset dir="${home}/css">
+					<!--  for now, allow separate files to be loaded
+					
+					<include name="**/images/*" />
+					<exclude name="colours.css, jquery-ui-1.8.23.custom.css, jquery-ui-1.9.1.custom.min.css, demo.css"/>-->
+			</fileset>
+			<!--<filelist dir="${home}/css" files="app.css" />-->
+			<fileset dir="${build}/css" />
+		</copy>
+		<copy todir="${dist}/js" >
+			<fileset dir="${build}/js/min" includes="all-demo${suffix}.js" />
+			<!--<globmapper from="*.js" to="*-${DSTAMP}${TSTAMP}.js" />-->
+		</copy>
+		<copy todir="${dist}/json">
+			<fileset dir="${home}/json" />
+		</copy>
+		<!-- copy the .min file as it uses the minified js; rename it to remove the .min part of the filename -->
+		<!--<copy file="${home}/CleanShoppingList.min.html" tofile="${dist}/CleanShoppingList.html" />
+		<copy file="${home}/RecipeCreator.min.html" tofile="${dist}/RecipeCreator.html" />-->
+		<copy file="${home}/Demo.html" tofile="${dist}/Demo.html" />
+	</target>
+	
+	<target name="deploy-dev">
+		<copy todir="${dist}/js">
+			<fileset dir="${home}/js" includes="*.js" />
+			<fileset dir="${build}/js" includes="timeline.concatenated.js" />
+		</copy>
+	</target>
+	
+	<target name="deploy-all" depends="deploy.demo, deploy.editableDemo, deploy.app"></target>
+			
+	<!--  WARNING: HERE BE DRAGONS!!!
+			Since we're now developing out of the war directory rather than the local directory, we don't want to delete this dir anymore!!!
+	<target name="publish">
+		<delete dir="${dist}/js" />
+		<mkdir dir="${dist}/js" />
+		<copy todir="${dist}/js">
+			<fileset dir="${build}/js/min" includes="all-demo.js, all-${editable-demo-name}.js, all-${all-readonly-name}.js, all-${all-editable-name}.js"/>
+		</copy>
+	</target>-->
+		
+	<!--<target name="css.concatenate.readonly" depends="css.concatenate.timeline">-->
+	<target name="css.concatenate.readonly">
+		<concat destfile="${build}/css/timelineApp.css">
+			<filelist dir="${build}/css" files="timeline.css" />
+			<filelist dir="${home}/css" files="app.css" />
+		</concat>
+		<!--
+		The resulting file doesn't work well cuz the colours.css in here will not get replaced, so elements in it that are not in 
+		a new style selected from the themer will not be overriden! :(
+		<concat destfile="${build}/css/timelineAppColours.css">
+			<filelist dir="${build}/css" files="timelineApp.css" />
+			<filelist dir="${home}/css/default" files="colours.css" />
+		</concat>
+		-->
+	</target>
+	
+	<!--<target name="css.concatenate.editable" depends="css.concatenate.timeline">-->
+	<target name="css.concatenate.editable">
+		<concat destfile="${build}/css/timelineEditableApp.css">
+			<filelist dir="${build}/css" files="timeline.css" />
+			<filelist dir="${home}/css" files="app.css, editUI.css" />
+		</concat>
+		<!--
+		The resulting file doesn't work well cuz the colours.css in here will not get replaced, so elements in it that are not in 
+		a new style selected from the themer will not be overriden! :(
+		<concat destfile="${build}/css/timelineAppColours.css">
+			<filelist dir="${build}/css" files="timelineApp.css" />
+			<filelist dir="${home}/css/default" files="colours.css" />
+		</concat>
+		-->
+	</target>	
+	
+	<target name="css.minify.readonly" depends="css.concatenate.readonly">
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${build}/css/timelineApp.css -o ${build}/css/timelineApp.min.css" />
+		</java>					
+	</target>
+	
+	<target name="css.minify.editable" depends="css.concatenate.editable">
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${build}/css/timelineEditableApp.css -o ${build}/css/timelineEditableApp.min.css" />
+		</java>					
+	</target>	
+	
+	<!--<target name="css.concatenate.all" depends="css.concatenate.timeline, css.concatenate.themes, css.concatenate.readonly, css.concatenate.editable"></target>-->
+	
+	<target name="css.concatenate.all" depends="css.concatenate.readonly, css.concatenate.editable"></target>
+	
+	<!--<target name="css.minify.all" depends="css.minify.timeline, css.minify.themes, css.minify.readonly, css.minify.editable"></target>-->
+	
+	<target name="css.minify.all" depends="css.minify.readonly, css.minify.editable"></target>
+
+	<!-- Begin: themes stuff -->
+	<target name="css.concatenate.themes">
+		<concat destfile="${build}/css/default/theme.css">
+			<filelist dir="${home}/css/default" files="jquery-ui-1.8.23.custom.css, colours.css" />
+		</concat>
+		<concat destfile="${build}/css/indie-blue/theme.css">
+			<filelist dir="${home}/css/indie-blue" files="jquery-ui-1.9.1.custom.min.css, colours.css" />
+		</concat>
+		<concat destfile="${build}/css/indie-green/theme.css">
+			<filelist dir="${home}/css/indie-green" files="jquery-ui-1.9.1.custom.min.css, colours.css" />
+		</concat>
+		<concat destfile="${build}/css/livestrong/theme.css">
+			<filelist dir="${home}/css/livestrong" files="jquery-ui-1.8.23.custom.css, colours.css" />
+		</concat>
+		<concat destfile="${build}/css/nike-livestrong/theme.css">
+			<filelist dir="${home}/css/nike-livestrong" files="jquery-ui-1.8.23.custom.css, colours.css" />
+		</concat>
+		<concat destfile="${build}/css/vader2/theme.css">
+			<filelist dir="${home}/css/vader2" files="jquery-ui-1.8.23.custom.css, colours.css" />
+		</concat>	
+	</target>
+	
+	<target name="css.minify.themes" depends="css.concatenate.themes">
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${build}/css/default/theme.css -o ${build}/css/default/theme.min.css" />
+		</java>		
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${build}/css/indie-blue/theme.css -o ${build}/css/indie-blue/theme.min.css" />
+		</java>
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${build}/css/indie-green/theme.css -o ${build}/css/indie-green/theme.min.css" />
+		</java>
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${build}/css/livestrong/theme.css -o ${build}/css/livestrong/theme.min.css" />
+		</java>
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${build}/css/nike-livestrong/theme.css -o ${build}/css/nike-livestrong/theme.min.css" />
+		</java>
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${build}/css/vader2/theme.css -o ${build}/css/vader2/theme.min.css" />
+		</java>						
+	</target>		
+	<!-- End: themes stuff -->
+
+
+	
+	<!-- Begin: Similie Widgets Timeline library stuff -->
+	<!--  The timeline code rarely changes but the build script runs it every time - let's leave it out for now
+	
+	<target name="js.minify.timeline.tal">
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${timeline-dir}/tal/tal_ajax.js -o ${timeline-dir}/tal/tal_ajax.min.js" />
+		</java>
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${timeline-dir}/tal/tal_timeline.js -o ${timeline-dir}/tal/tal_timeline.min.js" />
+		</java>		
+	</target>			
+
+	<target name="js.minify.timeline.l10n">
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${timeline-dir}/timeline_js/scripts/l10n/en/labellers.js -o ${timeline-dir}/timeline_js/scripts/l10n/en/labellers.min.js" />
+		</java>
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${timeline-dir}/timeline_js/scripts/l10n/en/timeline.js -o ${timeline-dir}/timeline_js/scripts/l10n/en/timeline.min.js" />
+		</java>
+	</target>-->	
+	
+	<!-- note: original versions of simile-ajax-bundle.js and timeline-bundle.js had a  BOM which messed everything up.  It has been removed.
+	If a funny character shows up in this file, it is likely due to a BOM in one of those files -->
+	
+	<!--  The timeline code rarely changes but the build script runs it every time - let's leave it out for now
+	<target name="js.concatenate.timeline" depends="js.minify.timeline.tal, js.minify.timeline.l10n">
+		<concat destfile="${build}/js/timeline.concatenated.js" fixlastline="yes">
+			<filelist dir="${timeline-dir}/tal" files="tal_ajax.min.js" />
+			<filelist dir="${timeline-dir}/timeline_ajax" files="simile-ajax-bundle.js" />
+			<filelist dir="${timeline-dir}/tal" files="tal_timeline.min.js" />
+			<filelist dir="${timeline-dir}/timeline_js" files="timeline-bundle.js" />
+			<filelist dir="${timeline-dir}/timeline_js/scripts/l10n/en" files="labellers.min.js, timeline.min.js" />
+		</concat>
+	</target>
+		      
+	<target name="css.concatenate.timeline">
+		<concat destfile="${build}/css/timeline.css" fixlastline="yes">
+			<filelist dir="${home}/javascripts/timeline/timeline_ajax/styles" files="graphics.css" />
+			<filelist dir="${home}/javascripts/timeline/timeline_js/" files="timeline-bundle.css" />
+		</concat>
+	</target>
+	
+	<target name="css.minify.timeline" depends="css.concatenate.timeline">
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${build}/css/timeline.css -o ${build}/css/timeline.min.css" />
+		</java>		
+	</target>		-->
+	<!-- End: Similie Widgets Timeline library stuff -->
+	
+	
+	<target name="json.minify">
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${home}/json/var_demo_events_images_prefixes.js -o ${home}/json/demo_events_images_prefixes.min.js" />
+		</java>
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${home}/json/var_demo_chapters.js -o ${home}/json/chapters.min.js" />
+		</java>		
+		<java jar="${yui-compressor-path}/yuicompressor-2.4.7.jar" fork="true" failonerror="true">
+			<arg line="${home}/json/var_demo_chapters_longer.js -o ${home}/json/chapters_longer.min.js" />
+		</java>				
+	</target>	
+	
+	
+	<target name="clean">
+		<delete dir="${build}/js/cat" />
+		<delete dir="${build}/js/min" />
+	</target>
+	
+	<target name="clean-all">
+		<delete dir="${build}" />
+	</target>		
+</project>

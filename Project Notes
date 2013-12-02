@@ -1,0 +1,13 @@
+NOTES:
+
+1) Currently, you can put images in the /images folder and have them show up on the timeline by doing one of the following:
+
+	i)  pass in "/images/" as the url for eventSource.loadJSON()
+	ii) prepend "/images/" to the url for the image in the JSON event data
+
+In the future, we should add the ability to specify an images directory through config or dynamically, or resolve to put full urls on the images in the JSON event data if that's deemed acceptable.
+
+2) Move code from cancer_events_source.js to timeline-module.js?
+
+
+3) WHY does ui-darkness require a wider sidebar than vader to prevent tabs from wrapping?

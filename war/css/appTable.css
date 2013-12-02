@@ -1,0 +1,21 @@
+#my-timeline {
+	width: 98%;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 10px;
+}
+
+#sidebar {
+	margin: 0;
+	width: 33%;
+}
+
+#patientNotesContainer {
+	width: 65.5%;
+	height: 100%;
+	margin-right: 10px;
+}
+
+#main {
+	overflow: hidden;
+}

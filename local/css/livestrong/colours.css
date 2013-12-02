@@ -1,0 +1,82 @@
+
+/* colours.css */
+
+body {
+	font-size: 14px;
+	background-color: #000;
+	color: #fdcc00;
+}
+
+
+.timeline-highlight-decorator.ui-state-highlight {
+  background: none repeat scroll 0 0 #000000;
+  opacity: 0.3;
+}
+
+/* overrides from jquery UI css */
+
+.ui-widget {
+	font-family: papyrus, Verdana, Geneva, sans-serif;
+}
+
+
+
+/* end overrides */
+
+#header {
+	border: 1px solid #000000; 
+	background: #fdcc00 url(images/ui-bg_gloss-wave_1fdcc006_fdcc00_500x100.png) 50% top repeat-x; 
+	color: #000000;
+}
+
+#header li:hover {
+	background-color: #000;
+	color: #fdcc00;
+}
+
+/* overrides from jquery UI css */
+.ui-dialog .ui-dialog-content {
+	background-color: #DEDEDE;
+	color: #000;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+	background-color: #000;
+	background-image: none;
+	color: #fdcc00;
+}
+/* end overrides */
+
+.timeline-event-bubble-body {
+  color: black;
+}
+
+#designedByDialog a {
+	color: #000;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #dedede;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+/* for editing UI */
+.eventControls .button {
+    background-color: #DEDEDE;
+    color: #000000;
+}
+
+.eventControls .button:hover {
+    background-color: #000000;
+    color: #fdcc00;
+}

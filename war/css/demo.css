@@ -1,0 +1,162 @@
+#sidebar {
+	float: right;
+	width: 440px;
+	margin: 10px 0px;
+}
+/* use this to make the event info box the same height as the timeline
+.tabs > div {
+	height: 230px;
+	padding: 4px;
+	overflow-y: auto;	
+}
+*/
+
+/* use this to put an arrow button to the left of spans
+#surgery1 span {
+    left: 0.2em;
+    margin: -8px 5px 0 0;
+    position: absolute;
+    top: 50%;
+}
+
+#surgery1 {
+    padding: 0.4em 1em 0.4em 20px;
+    position: relative;
+    text-decoration: none;
+}
+*/
+
+#my-timeline, #patientNotesContainer {
+	height: 315px; 
+	/*border: 1px solid #aaa;*/
+	border: 1px solid #000;
+	padding: 3px;
+	margin: 11px 450px 11px 10px;
+}
+#patientNotesContainer {	
+	/*overflow-y: auto; */
+	padding: 0px;
+}
+#patientNotesMain {
+	height: 260px;  /* #my-timeline.height - #patientNotesHeader.height */	
+	overflow-y: auto;
+	margin: 10px 0px 10px 10px;
+}
+#patientNotesHeader {
+	top: 0px;
+	left: 0px;
+	height: 20px;
+	padding-left: 20px;
+	margin: 10px 0px;
+}
+#patientNotes {
+	margin-left: 210px;
+	padding: 0px 10px;
+	font-size: 20px;
+	font-family: Verdana, Helvetica, Geneva, Trebuchet MS, sans-serif;
+}
+/* use this if showing multiple paragraphs at once 
+#patientNotes > p:nth-child(1) {
+	margin-top: 5px;
+}*/
+#patientNotes > p {
+	margin-top: 5px;
+}
+.center {
+	text-align: center;
+}
+.eventTypeVisibilityToggle {
+	text-align: center;	
+}
+.ui-tabs .ui-tabs-nav li a {
+	/* override default padding to make tabs more compact so that they fit better */
+	padding: 0.4em 0.5em;
+}
+.ui-tabs .ui-tabs-panel {
+	/* override default padding to make accordion panels fit better */
+	padding-left: 0;
+	padding-right: 0;
+}
+.tabs li, #patientNotesNav li {
+	list-style: none outside none;
+}
+#patientNotesNav li {
+	margin: 10px 0px;
+}
+#patientNotesNav {
+	position: fixed;
+	width: 200px;
+	
+	/*background-color: #fdcc00;
+	border: 1px solid #fdcc00;
+	margin: 0px 10px;*/
+	border: none;
+	height: 260px;
+	overflow-y: auto; 
+}
+#patientNotesNav label {
+	margin: 8px 10px;
+}
+#patientNotesNav ul {
+	padding-left: 10px;
+}
+/* doesn't work properly if using background highlighting */
+/*.eventTitle {
+	position: relative;
+	left: -1.5em;
+}*/
+
+li h3 {
+	position: relative;
+	left: -1.5em;	
+}
+
+.eventContent {
+	padding-right: 25px;
+}
+
+#eventInfoBox .eventTypeContent {
+	height: 573px;
+	overflow-y: auto;
+	padding-top: 0;
+}
+
+.header {
+    text-align: center;
+}
+/* livestrong */
+/*body {
+	font-size: 14px;
+	background-color: #000;
+	color: #fdcc00;
+}*/
+
+/* nike-livestrong */
+body {
+	font-size: 14px;
+	background-color: #fdcc00;
+	color: #000;	
+}
+
+a {
+	text-decoration: none;
+	padding: 3px 4px 0px 4px;
+}
+/*a:visited {
+	color: inherit;
+}
+
+a:hover,*/ /*a:active,*//* a:focus {
+	background-color: black;
+	color: #599fcf; 
+	text-decoration: none;
+}
+a.selected {
+	background-color: inherit;
+	color: white;
+}*/
+
+.buttons {
+	float: right;
+	padding-right: 3px;
+}

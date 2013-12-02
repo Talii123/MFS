@@ -1,0 +1,11 @@
+
+
+        <script id="errorsDialogTemplate" type="text/x-jquery-tmpl">
+            <div class="msgBox" style="display: none">Oops!  There are a couple of <a class='errorsDialogLink'>errors</a>
+            </div>
+            <div id="errorsDialog{{= eventType[0]}}" class="dialog" title="Errors Dialog">
+                <p class="valid">Nice job!  You&apos;ve now filled in all of the required information correctly, so you should have no trouble submitting the data now.</p>
+                <p class="invalid" style="display: none">Hey there!  Just correct these minor problems and everything should work!</p>
+                <ul class="errors"></ul>
+            </div>   
+        </script>

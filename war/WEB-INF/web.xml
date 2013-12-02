@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+               <!--  <context-param>
+                <param-name>resteasy.servlet.mapping.prefix</param-name>
+                <param-value>/rest</param-value>
+                </context-param>
+ -->
+	<welcome-file-list>
+		<welcome-file>DemoPreRenderedPreLoaded.html</welcome-file>
+	</welcome-file-list>
+	
+	<jsp-config>
+		<jsp-property-group>
+			<display-name>All JSPs</display-name>
+			<url-pattern>*.jsp</url-pattern>
+			<el-ignored>false</el-ignored>
+			<page-encoding>UTF-8</page-encoding>
+			<trim-directive-whitespaces>true</trim-directive-whitespaces>
+		</jsp-property-group>
+	</jsp-config>
+	
+	<!--  is this needed for production code?  Definitely needed to log all requests on dev server -->
+	<!--  
+	<filter>
+		<filter-name>LogFilter</filter-name>
+		<filter-class>friedman.tal.filters.LogFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LogFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+		  -->
+	  <filter>
+	  	<filter-name>GoogleUserFilter</filter-name>
+	  	<filter-class>friedman.tal.filters.GoogleUserFilter</filter-class>
+	  </filter>
+	  <filter-mapping>
+	  	<filter-name>GoogleUserFilter</filter-name>
+	  	<url-pattern>/*</url-pattern>
+	  </filter-mapping>
+	
+	   <filter>
+	     <filter-name>PostOverrideFilter</filter-name>
+	     <filter-class>friedman.tal.filters.PostOverrideFilter</filter-class>
+	  </filter>	       
+	  <filter-mapping>
+	     <filter-name>PostOverrideFilter</filter-name>
+	     <url-pattern>/*</url-pattern>
+	  </filter-mapping>
+	  
+	  <filter>
+	  	<filter-name>DevFilter</filter-name>
+	  	<filter-class>friedman.tal.filters.DevFilter</filter-class>
+	  </filter>
+	  <filter-mapping>
+	  	<filter-name>DevFilter</filter-name>
+	  	<url-pattern>/*</url-pattern>
+	  </filter-mapping>
+	  
+	<!-- Remember:  filters are applied in the order in which they appear in this file! -->
+    <filter>
+        <filter-name>Resteasy</filter-name>
+        <filter-class>org.jboss.resteasy.plugins.server.servlet.FilterDispatcher</filter-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>friedman.tal.mfs.MyFibroStoryApplication</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>Resteasy</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+	  
+   <!--  	  <servlet>
+        <servlet-name>Resteasy</servlet-name>
+        <servlet-class>
+            org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+        </servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>friedman.tal.mfs.MyFibroStoryApplication</param-value>
+        </init-param>
+    </servlet>    
+    <servlet-mapping>
+        <servlet-name>Resteasy</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    -->
+    <context-param>
+    	<description>Specifies the name of the agreement a user has to agree to in order to create timelines</description>
+    	<param-name>newTLRequiredAgreementFormName</param-name>
+    	<param-value>TermsOfUse</param-value>
+    </context-param>
+    <context-param>
+    	<description>Specifies the version of the agreement a user has to agree to in order to create timelines</description>
+    	<param-name>newTLRequiredAgreementFormRevisionNum</param-name>
+    	<param-value>1</param-value>
+    </context-param>
+    
+    
+    <error-page>
+    	<exception-type>org.jboss.resteasy.spi.UnhandledException</exception-type>
+    	<location>/WEB-INF/error.jsp</location>
+    </error-page> 
+    
+    
+    <!--  this doesn't work, so I made an ExceptionMapper using JAX-RS instead
+    <error-page>
+    	<exception-type>org.jboss.resteasy.spi.UnauthorizedException</exception-type>
+    	<location>/WEB-INF/unauthorized.jsp</location>    
+    </error-page>
+     -->
+    	
+   <security-constraint>
+        <web-resource-collection>
+        	<web-resource-name>admin-section</web-resource-name>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>                
+    </security-constraint> 	
+
+   <security-constraint>
+        <web-resource-collection>
+        	<web-resource-name>signed-in-https-urls</web-resource-name>
+            <url-pattern>/signup</url-pattern>            
+            <url-pattern>/myStory</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>*</role-name>
+        </auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>        
+    </security-constraint>     	
+	<!-- 
+		Enable to set the entire application to require admin access
+	<security-constraint>
+        <web-resource-collection>
+        	<web-resource-name>everything</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>  -->
+ <servlet>
+  <servlet-name>SystemServiceServlet</servlet-name>
+  <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
+  <init-param>
+   <param-name>services</param-name>
+   <param-value/>
+  </init-param>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>SystemServiceServlet</servlet-name>
+  <url-pattern>/_ah/spi/*</url-pattern>
+ </servlet-mapping>
+</web-app>

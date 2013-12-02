@@ -1,0 +1,43 @@
+      
+      
+      <script src="/js/jquery-1.8.3.js" type="text/javascript"></script>
+      <script src="/js/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+      <script src="/js/jquery.tmpl.js" type="text/javascript"></script>
+
+      <script src="/js/jquery.watermarkinput.js" type="text/javascript"></script>
+      <script src="/js/jquery.validate.js" type="text/javascript"></script>
+
+      <script src="/js/date.format.js" type="text/javascript"></script>
+      
+      <!--  
+      <script src="/javascripts/timeline/tal/tal_ajax.js" type="text/javascript"></script>
+      <script src="/javascripts/timeline/timeline_ajax/simile-ajax-bundle.js" type="text/javascript"></script>
+      <script src="/javascripts/timeline/tal/tal_timeline.js" type="text/javascript"></script>
+      <script src="/javascripts/timeline/timeline_js/timeline-bundle.js" type="text/javascript"></script>
+      <script src="/javascripts/timeline/timeline_js/scripts/l10n/en/labellers.js" type="text/javascript"></script>
+      <script src="/javascripts/timeline/timeline_js/scripts/l10n/en/timeline.js" type="text/javascript"></script>
+      -->
+      <script src="/js/timeline.concatenated.js" type="text/javascript"/></script>
+      
+      
+      <link type="text/css" rel="stylesheet" href="/javascripts/timeline/timeline_ajax/styles/graphics.css" />
+      <link type="text/css" rel="stylesheet" href="/javascripts/timeline/timeline_js/timeline-bundle.css" />
+      
+      <script src="/js/themer.js" type="text/javascript"></script>
+
+	<script src="/js/cancer_events_source.js"></script>
+
+	<script src="/js/sandbox.js" type="text/javascript"></script>
+      <script src="/js/common-module.js" type="text/javascript"></script>
+	<script src="/js/timeline-view-module.js" type="text/javascript"></script>
+	<script src="/js/timeline-edit-module.js" type="text/javascript"></script>
+	
+	<script src="/js/chapters-view-module.js" type="text/javascript"></script>
+	<script src="/js/chapters-edit-module.js" type="text/javascript"></script>
+      <script src="/js/dao-module.js" type="text/javascript"></script>
+
+<!--  should this be demoPreRenderedPreLoaded.js? -->
+	<!--  <script src="/js/fullStory.js" type="text/javascript"></script>-->
+
+	<script src="/js/appViewer.js" type="text/javascript"></script>
+

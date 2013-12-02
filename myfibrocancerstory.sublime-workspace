@@ -1,0 +1,1502 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"error",
+				"errorMsg"
+			],
+			[
+				"erro",
+				"errorMsg"
+			],
+			[
+				"fa",
+				"fadeIn"
+			],
+			[
+				"succ",
+				"Successfully"
+			],
+			[
+				"pend",
+				"pendingResource"
+			],
+			[
+				"pe",
+				"pending"
+			],
+			[
+				"fail",
+				"failHandler"
+			],
+			[
+				"pen",
+				"pendingPost"
+			],
+			[
+				"sl",
+				"slideDown"
+			],
+			[
+				"not",
+				"notifyAll"
+			],
+			[
+				"pos",
+				"postID"
+			],
+			[
+				"sus",
+				"successFulPostData"
+			],
+			[
+				"retry",
+				"retryAll"
+			],
+			[
+				"del",
+				"deleteActionsHandler"
+			],
+			[
+				"resour",
+				"resourceID"
+			],
+			[
+				"eve",
+				"eventName"
+			],
+			[
+				"is",
+				"isEmpty"
+			],
+			[
+				"cha",
+				"chapterEvent"
+			],
+			[
+				"set",
+				"setState"
+			],
+			[
+				"dele",
+				"deleteActionsHander"
+			],
+			[
+				"aj",
+				"ajaxOptions"
+			],
+			[
+				"res",
+				"resourceObj"
+			],
+			[
+				"post",
+				"postActionsHander"
+			],
+			[
+				"hand",
+				"handleDeleteError"
+			],
+			[
+				"retr",
+				"retryTimeout"
+			],
+			[
+				"retryT",
+				"retryTimeout"
+			],
+			[
+				"num",
+				"numTimesFailed"
+			],
+			[
+				"re",
+				"retryTimeout"
+			],
+			[
+				"doR",
+				"doRetry"
+			],
+			[
+				"ret",
+				"retryMultiplier"
+			],
+			[
+				"aja",
+				"ajax"
+			],
+			[
+				"sta",
+				"statusCode"
+			],
+			[
+				"un",
+				"unPostedResources"
+			],
+			[
+				"chap",
+				"chaptersSyncer"
+			],
+			[
+				"chapterS",
+				"chaptersSyncer"
+			],
+			[
+				"delete",
+				"deleteResource"
+			],
+			[
+				"ajax",
+				"ajaxOptions"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"sav",
+				"saveHelperClassname"
+			],
+			[
+				"save",
+				"saveHelper"
+			],
+			[
+				"bo",
+				"bottom"
+			],
+			[
+				"append",
+				"appendTarget"
+			],
+			[
+				"upda",
+				"updateVisFunc"
+			],
+			[
+				"sc",
+				"scriptURLs"
+			],
+			[
+				"scr",
+				"scriptURL"
+			],
+			[
+				"icon",
+				"iconDiv"
+			],
+			[
+				"end",
+				"endIndex"
+			],
+			[
+				"las",
+				"lastIndexOf"
+			],
+			[
+				"iconD",
+				"iconData"
+			],
+			[
+				"result",
+				"resultCR"
+			],
+			[
+				"event",
+				"eventToAdd"
+			],
+			[
+				"even",
+				"eventToAdd"
+			],
+			[
+				"has",
+				"hasOwnProperty"
+			],
+			[
+				"nameV",
+				"nameValuePairs"
+			],
+			[
+				"eventT",
+				"eventTypeTemplate"
+			],
+			[
+				"mak",
+				"makeUpdater"
+			],
+			[
+				"fou",
+				"foundElement"
+			],
+			[
+				"er",
+				"errorFunc"
+			],
+			[
+				"text",
+				"textStatus"
+			],
+			[
+				"j",
+				"jqXHR"
+			],
+			[
+				"err",
+				"errorThrown"
+			],
+			[
+				"Canc",
+				"CancerEventSource"
+			],
+			[
+				"test",
+				"testType"
+			],
+			[
+				"hasOwn",
+				"hasOwn"
+			],
+			[
+				"slide",
+				"slideDown"
+			],
+			[
+				"ch",
+				"chapters"
+			],
+			[
+				"chemo",
+				"chemos"
+			],
+			[
+				"in",
+				"initAutoCompletes"
+			],
+			[
+				"get",
+				"getTime"
+			],
+			[
+				"chapter",
+				"chapterID"
+			],
+			[
+				"patient",
+				"patientNotes"
+			],
+			[
+				"patients",
+				"patientNotesNav"
+			],
+			[
+				"en",
+				"enableChapterNav"
+			],
+			[
+				"hig",
+				"highlightChapter"
+			],
+			[
+				"sel",
+				"selectChapter"
+			],
+			[
+				"load",
+				"loadChapters"
+			],
+			[
+				"chaptersUPde",
+				"chaptersUpdater"
+			],
+			[
+				"make",
+				"makeChapterHighlighter"
+			],
+			[
+				"curr",
+				"currentChapters"
+			],
+			[
+				"tye",
+				"typeDetails"
+			],
+			[
+				"type",
+				"typeDetails"
+			],
+			[
+				"typ",
+				"typeDetails"
+			],
+			[
+				"time",
+				"timelineLibEvent"
+			],
+			[
+				"tim",
+				"timelineLibEvent"
+			],
+			[
+				"dummy",
+				"dummyObj"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"errorCon",
+				"errorsContainerSelector"
+			],
+			[
+				"eventTy",
+				"eventTypeKeyAndStr"
+			],
+			[
+				"anEve",
+				"anEventTypeValidationConfig"
+			],
+			[
+				"getEr",
+				"getErrorNode"
+			],
+			[
+				"setEr",
+				"setError"
+			],
+			[
+				"htm",
+				"htmlStrs"
+			],
+			[
+				"anEr",
+				"anErrorsContainerSelector"
+			],
+			[
+				"inval",
+				"invalidFields"
+			],
+			[
+				"field",
+				"fieldToRemove"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"ALL",
+				"ALL_CHAPTER_BUTTONS"
+			],
+			[
+				"getC",
+				"getChapterButtons"
+			],
+			[
+				"CHAP",
+				"CHAPTER_NAV_SELECTOR"
+			],
+			[
+				"this",
+				"thisFormPart"
+			],
+			[
+				"nex",
+				"nextFormPart"
+			],
+			[
+				"cu",
+				"currentBtn"
+			],
+			[
+				"ena",
+				"enableAddingChapters"
+			],
+			[
+				"getPr",
+				"getPrevButton"
+			],
+			[
+				"bu",
+				"buttonToSelect"
+			],
+			[
+				"pa",
+				"patientNotesNav"
+			],
+			[
+				"par",
+				"parents"
+			],
+			[
+				"con",
+				"containerClass"
+			],
+			[
+				"hide",
+				"hideControls"
+			],
+			[
+				"contr",
+				"controlsToggle"
+			],
+			[
+				"chapterTEx",
+				"chapterTextDivID"
+			],
+			[
+				"mous",
+				"mouseleave"
+			],
+			[
+				"mou",
+				"mouseenter"
+			],
+			[
+				"cli",
+				"click"
+			],
+			[
+				"DatePic",
+				"Datepicker"
+			],
+			[
+				"up",
+				"updateEventTypeVis"
+			],
+			[
+				"cont",
+				"containersSelector"
+			],
+			[
+				"date",
+				"datepicker"
+			],
+			[
+				"high",
+				"highlightedChapter"
+			],
+			[
+				"update",
+				"updateHighlightedChapter"
+			],
+			[
+				"chapterI",
+				"chapterIndex"
+			],
+			[
+				"ma",
+				"max-width"
+			],
+			[
+				"of",
+				"offset"
+			],
+			[
+				"addCh",
+				"addChapter"
+			],
+			[
+				"sub",
+				"submitHandler"
+			],
+			[
+				"valid",
+				"validationConfig"
+			],
+			[
+				"padd",
+				"padding-left"
+			],
+			[
+				"patien",
+				"patientNotesHeader"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "war/js/appEditor.js",
+			"settings":
+			{
+				"buffer_size": 47822,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "war/js/chapters-edit-module.js",
+			"settings":
+			{
+				"buffer_size": 3670,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "war/js/chapters-view-module.js",
+			"settings":
+			{
+				"buffer_size": 7634,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "war/js/timeline-view-module.js",
+			"settings":
+			{
+				"buffer_size": 24784,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "war/js/timeline-edit-module.js",
+			"settings":
+			{
+				"buffer_size": 8152,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "war/Canvas.html",
+			"settings":
+			{
+				"buffer_size": 52131,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Talii/Google Drive/My Fibro Story - Features list 2013",
+			"settings":
+			{
+				"buffer_size": 1806,
+				"line_ending": "Unix",
+				"name": "Features for UserVoice Feedback:"
+			}
+		},
+		{
+			"file": "war/js/demoPreRenderedPreLoaded.js",
+			"settings":
+			{
+				"buffer_size": 39537,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "war/js/common-module.js",
+			"settings":
+			{
+				"buffer_size": 5378,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "war/css/app.css",
+			"settings":
+			{
+				"buffer_size": 7095,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "war/js/cancer_events_source.js",
+			"settings":
+			{
+				"buffer_size": 6141,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "war/js/dao-wFailover-module.js",
+			"settings":
+			{
+				"buffer_size": 25492,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "war/js/dao-module.js",
+			"settings":
+			{
+				"buffer_size": 9496,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "war/jspf/timelineJSEditableRaw.jspf",
+			"settings":
+			{
+				"buffer_size": 2477,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "build/js/timeline.concatenated.js",
+			"settings":
+			{
+				"buffer_size": 231300,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/Talii/Desktop/Terra",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/WEB-INF/Timeline.jsp",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/templates/inputForm.jqtmpl",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/templates/eventFormatting.jqtmpl",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/WEB-INF/Demo.jsp",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/jspf/header.jspf",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/DemoPreRenderedPreLoaded.html",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/DemoPreRenderedPreLoadedNotYetWorking.html",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/dao-module.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/jspf/timelineJSEditableMinified.jspf",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/jspf/timelineJSReadonlyMinified.jspf",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/timelineApp.min.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/build/css/timelineApp.min.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/OldDemoPreRenderedPreLoaded.html",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/scrap",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/demoViewer.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/editUI.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/cancer_events_source.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/app.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/common-module.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/demo-dao-module.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/timeline.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/indie-green/colours.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/livestrong/colours.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/indie-blue/colours.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/nike-livestrong/colours.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/vader2/colours.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/default/colours.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/demo.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/demoPreRenderedPreLoaded.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/UIunlock.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/jspf/timelineJSReadonlyRaw.jspf",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/jspf/timelineJSEditableRaw.jspf",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/jquery-1.8.3.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/themer.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/templates/all.jqtmpl",
+		"/Users/Talii/Desktop/inputForm.jqtmpl.backup.jqtmpl",
+		"/Users/Talii/Desktop/NewUI.html",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/old/scrappy.html",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/themer2.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/jspf/included.jspf",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/jspf/demo.jspf",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/dummy-dao-module.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/play.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/templates/general.jqtmpl",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/all-play.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/build/js/cat/editableDemo.concatenated.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/jspf/readonlybase.jspf",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/WEB-INF/error.jsp",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/Demo.html",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/BackupDemoPreRenderedPreLoaded.html",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/noconsole.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/timelinePlayApp.min.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/Canvas.html",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/appDiff.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/timelineEditableApp.min.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/chaptersCreator.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/backup_chapters-edit-module.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/fullStory.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/demoPreRenderedPreLoaded.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/timelineDiff.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/json/demo_events_images_prefixes.json",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/jspf/demoData.jspf",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/json/demoData.json",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/json/demo_events_images_prefixes.json",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/all-viewer.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/default/jquery-ui-1.8.23.custom.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/default/jquery-ui-1.9.2.custom.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/css/default/jquery-ui-1.9.2.custom.min.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/default/jquery-ui-1.9.2.custom.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/default/jquery-ui-1.9.2.custom.min.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/DemoPreRenderedPreLoaded.html",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/timeline-edit-module.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/chapters-view-module.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/dao-module.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/timelineViewer.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/timelineDiff.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/chaptersCreator.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/templates/all.jqtmpl",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/fullStory.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/timelineEditUI.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/chapters-edit-module.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/timelineReadonly.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/Play.html",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/all-creator.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/EmbeddedDataTest.html",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/PlayPrerenderdPreloaded.html",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/DemoPreRendered.html",
+		"/Users/Talii/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/timeline-view-module.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/timeline-view-module.js",
+		"/Users/Talii/Dropbox/.metadata/.plugins/org.eclipse.core.resources/.history/0/f0062289f78100121549bb54b7538089",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/jquery.validate.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/WEB-INF/TimelineView.jsp",
+		"/Users/Talii/Library/Application Support/Sublime Text 2/Packages/User/JSON.sublime-settings",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/templates/README",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/js/all-fullStory.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/common-module.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/themer.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/editUI-colors.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/editUI.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/app.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/scrappy.html",
+		"/Users/Talii/testWorkspace/MyFibroCancerStory/.settings/com.google.appengine.eclipse.core.prefs",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/.classpath",
+		"/Users/Talii/eclipse/configuration/.settings/com.google.gdt.eclipse.suite.prefs",
+		"/Users/Talii/.DS_Store",
+		"/Users/Talii/eclipse/configuration/org.eclipse.core.runtime/.manager/.tmp6516366723684138091.instance",
+		"/Users/Talii/Dropbox/test/.project",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/.project",
+		"/Users/Talii/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.4/appengine-java-sdk-1.7.4/README.ORM",
+		"/Users/Talii/Dropbox/Shared (Tal-Steve)/MFS Third Timeline (JS)/TimelineJS 01.html",
+		"/Users/Talii/Downloads/javaeetutorial5/examples/web/books/web/template/coda.jspf",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/war/WEB-INF/AgreementFormsList.jsp",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/default/colours.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/nike-livestrong/colours.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/js/jquery-ui-1.9.1.custom.js",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/livestrong/jquery-ui-1.8.23.custom.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/livestrong/jquery-ui-1.9.2.custom.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/livestrong/colours.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/DatePickerTest.html",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/build/css/timelinePlayApp.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/default/jquery-ui-1.8.23.custom.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/nike-livestrong/jquery-ui-1.9.2.custom.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/vader2/jquery-ui-1.8.23.custom.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/indie-green/jquery-ui-1.9.1.custom.min.css",
+		"/Users/Talii/Dropbox/MyFibroCancerStory/local/css/indie-blue/jquery-ui-1.9.1.custom.min.css",
+		"/Users/Talii/Desktop/huh.html"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Users/Talii/Dropbox/MyFibroCancerStory/war/",
+			"/Users/Talii/Dropbox/MyFibroCancerStory/war/js",
+			"/Users/Talii/Dropbox/MyFibroCancerStory/local/js",
+			"/Users/Talii/Dropbox",
+			"/Users/Talii/Dropbox/Clean",
+			"/Users/Talii/Dropbox/MyFibroCancerStory/",
+			"/Users/Talii/Dropbox/MyFibroCancerStory/war",
+			"/Users/Talii/Dropbox/MyFibroCancerStory/local",
+			"/Users/Talii/Dropbox/MyFibroCancerStory/local/js",
+			"/Users/Talii/Downloads/timeline_2.3.0 src/src/webapp/api/scripts",
+			"/Users/Talii/Downloads/timeline_2.3.0 src/src/ajax/api/scripts",
+			"/Users/Talii/Downloads/timeline_2.3.0 src/src/webapp/api/scripts",
+			"/Users/Talii/Downloads/timeline_2.3.0 src/src/ajax",
+			"/Users/Talii/Downloads/timeline_2.3.0 src/src/webapp/api/scripts"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\"top-left\"",
+			"notifyAll",
+			"notifyall",
+			"notify",
+			"attach",
+			"error",
+			"retryAllRequestsInMap",
+			"onSuccess",
+			"retryAllRequestsInMap",
+			"retryAll",
+			".done",
+			"handlePostError",
+			"handleDeleteError",
+			".tmpl",
+			".button()",
+			"addEventFormControlsTemplate",
+			".tmpl",
+			".tmpl(",
+			"MFS",
+			"My Cancer Story",
+			"MCS",
+			"input:radio",
+			"addEventFormControlsTemplate",
+			".appendTo",
+			".attach",
+			"updateEventTypeVis",
+			"retryTimer",
+			"syncer.pos",
+			"deleteActionsHander",
+			"postActionsHander",
+			"attach",
+			"jqXhr",
+			"myQ",
+			"unPostedResources",
+			"postResource",
+			"eventsSyncer",
+			"pendingPost =",
+			"pendingPost =]",
+			"retry",
+			"context",
+			"postResource",
+			"saveHelper",
+			"savehelper",
+			"app.getDAO",
+			"\\\"\\,",
+			"\\\"([^\\,])",
+			"\\\"([^\\s])",
+			"\\\"([^\\,])",
+			"\\\"\\,",
+			"\\\"([^\\,])",
+			"\\\"",
+			"Childrens Hospital",
+			"Cleveland Clinic",
+			"Patrick Thompson",
+			"Cynthia Herzog",
+			"Harry Cramer",
+			"Thomas Sunnenberg",
+			"Howard Gold",
+			"Mir Ali",
+			"Robert Pelley",
+			"James Fuesner",
+			"Graeme Alexander",
+			"highlightedEvent",
+			"repaintEvents",
+			"timelineController",
+			"highlight(",
+			"highlight",
+			"makeUpdater",
+			"makeTimelineController",
+			"makeVisibilityUpdater",
+			"makeTimelineController",
+			"sprite",
+			"updateEventTypeVis",
+			"hide(",
+			"hide",
+			"ultrasound_40_40.jpg",
+			"<img",
+			"40_40",
+			"<img",
+			"prefetch\nprefetch",
+			"prefetch",
+			"pre",
+			"#patientNotesNav label",
+			"label",
+			"eventSource",
+			"eventsJSON",
+			"eventSource",
+			"disableUI",
+			"UI",
+			"disable",
+			"<img",
+			"makeChaptersUpdater",
+			"makeChapterUpdater",
+			"makeTitlesSelectEventsInTL",
+			"dummy-dao-module.js",
+			"patientNotesNav",
+			"#newChapterTabTitle",
+			"enhancetimelinelibrary",
+			"eventDataURL",
+			"About This Project",
+			"aboutDialog\naboutDialog",
+			"aboutDialog",
+			"BEGIN",
+			"focus",
+			"hover",
+			":focus",
+			":hover",
+			"hover",
+			"hasProperty",
+			"test",
+			"chemoRe",
+			"chapter",
+			"diagnosis",
+			"commonEventDataInputTemplate",
+			"recommendationsTemplate",
+			"commonTreatmentEventTemplate",
+			"commonEventDataInputTemplate",
+			"addRadiationFormDetailsTemplate",
+			"radiation",
+			"chemoResultsEventTemplate",
+			"commonTreatmentEventTemplate",
+			"recommendationsTemplate",
+			"commonEventDataInputTemplate",
+			"{{tmpl",
+			"addTestFormDetailsTemplate",
+			"addRadiationFormDetailsTemplate",
+			"radiation",
+			"chemoResultsEventTemplate"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"My Fibrolamellar Story",
+			"deleteActionsHandler",
+			"postActionsHandler",
+			"\" },",
+			"{ \"\\1",
+			"\" },",
+			"{ \"\\1",
+			"{\"\\1",
+			"\"\\1",
+			"},",
+			"{",
+			"},",
+			"{",
+			"\", \"valid location\");",
+			"doTestExpectPass(\"\\1",
+			"\", \"valid hospital\");",
+			"\", \"valid doctor\");",
+			"doTestExpectPass(\"\\1",
+			"\", \"valid doctor\");",
+			"doTestExpectPass(\"\\1",
+			"\", \"valid chemo\");",
+			"doTestExpectPass(\"\\1",
+			"description",
+			"&#x2716;",
+			"&#x2714;",
+			" (\\1)",
+			" (\\1) ",
+			" (\\1)\\\\s",
+			" (\\1)\\s",
+			" (\\1)",
+			" (\\1)\",",
+			" ($1)\",",
+			"\",\\n\\t",
+			"\",\\n",
+			"\",\"",
+			"\",",
+			"iconURL",
+			"commonTreatmentEventTemplate",
+			"createChapterButton",
+			"addChapters",
+			"makeAddChaptersFunc",
+			"createChapter",
+			"formToEvent",
+			"/images",
+			"eventTypeKeyAndStr",
+			"chapterSelectorButtonID",
+			"elementControlsTemplate",
+			"chapterDataObj",
+			"chaptersJSON",
+			"eventDataObj",
+			"",
+			"Tremblay",
+			"tremblay",
+			"\\\\n"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 14,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "war/js/appEditor.js",
+					"settings":
+					{
+						"buffer_size": 47822,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								40812,
+								40812
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 48.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "war/js/chapters-edit-module.js",
+					"settings":
+					{
+						"buffer_size": 3670,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2478,
+								2481
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 224.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "war/js/chapters-view-module.js",
+					"settings":
+					{
+						"buffer_size": 7634,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4635,
+								4635
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 462.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "war/js/timeline-view-module.js",
+					"settings":
+					{
+						"buffer_size": 24784,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								24740,
+								24758
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 15572.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "war/js/timeline-edit-module.js",
+					"settings":
+					{
+						"buffer_size": 8152,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								974,
+								974
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "war/Canvas.html",
+					"settings":
+					{
+						"buffer_size": 52131,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								46619,
+								46635
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 26878.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/Users/Talii/Google Drive/My Fibro Story - Features list 2013",
+					"settings":
+					{
+						"buffer_size": 1806,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								544,
+								544
+							]
+						],
+						"settings":
+						{
+							"auto_name": "Features for UserVoice Feedback:",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "war/js/demoPreRenderedPreLoaded.js",
+					"settings":
+					{
+						"buffer_size": 39537,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								39366,
+								39366
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 12249.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "war/js/common-module.js",
+					"settings":
+					{
+						"buffer_size": 5378,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1080,
+								1080
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "war/css/app.css",
+					"settings":
+					{
+						"buffer_size": 7095,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7062,
+								7062
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 7845.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "war/js/cancer_events_source.js",
+					"settings":
+					{
+						"buffer_size": 6141,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "war/js/dao-wFailover-module.js",
+					"settings":
+					{
+						"buffer_size": 25492,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3705,
+								3705
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2155.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "war/js/dao-module.js",
+					"settings":
+					{
+						"buffer_size": 9496,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9496,
+								9496
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "war/jspf/timelineJSEditableRaw.jspf",
+					"settings":
+					{
+						"buffer_size": 2477,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2155,
+								2155
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java Server Pages (JSP).tmLanguage",
+							"tab_size": 6,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 465.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "build/js/timeline.concatenated.js",
+					"settings":
+					{
+						"buffer_size": 231300,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								84100,
+								84110
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 42689.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 70.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 267.0,
+	"status_bar_visible": true
+}

@@ -1,0 +1,431 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>My Fibrolamellar Story</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+        <link class="jqueryUICss" type="text/css" rel="stylesheet" href="css/default/jquery-ui-1.8.23.custom.css" />
+        <link id="appCss" type="text/css" rel="stylesheet" href="css/app.css" />
+        <link class="coloursCss" type="text/css" rel="stylesheet" href="css/default/colours.css" />
+ 		<!--<link type="text/css" rel="stylesheet" href="css/nike-livestrong-theme/jquery-ui-1.8.23.custom.css" />
+ 		<link type="text/css" rel="stylesheet" href="css/demo.css" />-->
+        
+        <script src="js/jquery-1.8.0.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
+        <script src="js/jquery.tmpl.js" type="text/javascript"></script>
+
+        <script src="js/date.format.js" type="text/javascript"></script>
+        
+        <script src="javascripts/timeline/tal/tal_ajax.js" type="text/javascript"></script>
+        <script src="javascripts/timeline/timeline_ajax/simile-ajax-bundle.js" type="text/javascript"></script>
+        <script src="javascripts/timeline/tal/tal_timeline.js" type="text/javascript"></script>
+        <script src="javascripts/timeline/timeline_js/timeline-bundle.js" type="text/javascript"></script>
+        <script src="javascripts/timeline/timeline_js/scripts/l10n/en/labellers.js" type="text/javascript"></script>
+        <script src="javascripts/timeline/timeline_js/scripts/l10n/en/timeline.js" type="text/javascript"></script>
+        
+        <link type="text/css" rel="stylesheet" href="javascripts/timeline/timeline_ajax/styles/graphics.css" />
+        <link type="text/css" rel="stylesheet" href="javascripts/timeline/timeline_js/timeline-bundle.css" />
+        
+        <!--<script src="http://static.simile.mit.edu/timeline/api-2.3.0/timeline-api.js?bundle=true" type="text/javascript"></script>
+        <script>
+            Timeline_ajax_url = "javascripts/timeline/timeline_ajax/simile-ajax-api.js";
+            Timeline_urlPrefix = 'javascripts/timeline/timeline_js/';
+            Timeline_parameters = 'bundle=true';
+        </script>
+        <script src="javascripts/timeline/timeline_js/timeline-api.js" type="text/javascript"></script>-->
+
+        <!-- determine what theme to use -->
+        <script src="js/themer.js" type="text/javascript"></script>
+
+		<script src="js/cancer_events_source.js"></script>
+		<script src="js/sandbox.js" type="text/javascript"></script>
+		<script src="js/timeline-view-module.js" type="text/javascript"></script>
+        <script src="js/timeline-edit-module.js" type="text/javascript"></script>
+
+        <script src="js/play.js" type="text/javascript"></script>		
+
+        <!--<script src="js/demo.js" type="text/javascript"></script>-->
+
+        <script id="patientNotesTemplate" type="text/x-jquery-tmpl">
+            <div id="patientNotesHeader">
+                <h3>In My Own Words:</h3>
+            </div>
+            <div id="patientNotesMain">
+                <div id="patientNotesNav" class="ui-widget ui-widget-content ui-corner-all">
+                    {{each $data.chapters}}
+                        <!--<input type="checkbox" id="chapter${$index}" />-->
+                        <input type="radio" id="chapter${$index}" name="chapter" /><label for="chapter${$index}">${title} >></label>
+                    {{/each}} 
+                </div>
+                <div id="patientNotes">
+                    {{each $data.chapters}}
+                        <p id="chapter${$index}_text"><!--${text}-->{{html text.replace(/\n/g, "<br/>").replace(/\t/g, "") }}</p>
+                    {{/each}}
+                </div>
+            </div>
+        </script>
+
+        <script id="dummyTemplate" type="text/x-jquery-tmpl">
+            <h1>Dummy Data</h1>
+        </script>
+        <script id="notImplementedTemplate" type="text/x-jquery-tmpl">
+            <!--<p>Oops!! This event type has not been implemented yet.</p>-->
+        </script>        
+<!--
+    I used this one successfully when I was passing in event._obj rather than event
+    <span class="date">${dateFormat(start, "longDate")}</span>
+-->
+
+        <script id="eventDataTemplate" type="text/x-jquery-tmpl">
+            <li>
+                <h3><a href="${$data.getID()}" class="eventTitle">${_text}</a></h3>
+                <div class="eventContent">   
+                    {{tmpl "#dateRangeTemplate"}}
+                    {{html $item.html() }}
+                    {{tmpl "#commonEventDataTemplate"}}
+                </div>
+                <br/>
+            </li>
+        </script>
+
+        <script id="dateRangeTemplate" type="text/x-jquery-tmpl">
+            {{if $data.getEnd() && new Date($data.getEnd()).getDate() != new Date($data.getStart()).getDate() }}
+                Started: <span class="date started">${dateFormat($data.getStart(), "longDate")}</span>
+                <br/>
+                Ended: <span class="date ended">${dateFormat($data.getEnd(), "longDate")}</span>
+                <br/>
+            {{else}}
+                Performed: <span class="date performed">${dateFormat($data.getStart(), "longDate")}</span>
+                <br/>
+            {{/if}}
+
+            {{if $data.getProperty("duration")}}
+                Duration: <span class="duration">${$data.getProperty("duration")}</span>
+                <br/>
+            {{/if}}
+        </script>        
+
+        <script id="commonEventDataTemplate" type="text/x-jquery-tmpl">
+            {{if $data.getProperty("result")}}
+                Result: <span class="result">${$data.getProperty("result")}</span><br/>
+            {{/if}}
+
+            {{if $data.getProperty("sideEffects")}}
+                <div>
+                    <br/>
+                    Side Effects: <br/><br/>
+                    <div class="sideEffects">
+                        <ol>
+                            {{each $data.getProperty("sideEffects")}}
+                                <li>${$value}</li>
+                            {{/each}}
+                        </ol>
+                    </div>
+                <div>
+                <br/>
+            {{/if}} 
+
+            {{if $data.getProperty("isRecommended")}}
+            Do I Recommend this Treatment? <span class="recommendation">${$data.getProperty("isRecommended")}</span><br/>
+            {{/if}}            
+
+            {{if $data.getProperty("pDescription")}}
+                <div>
+                    <br/>
+                    Description: <br/>
+                    <div class="description">
+                        <p>{{html $data.getProperty("pDescription").replace(/(\n)+/g, "</p><p>").replace(/\t/g, "") }}
+                        </p>
+                    </div>
+                </div>
+            {{/if}}           
+        </script>        
+
+        <script id="surgeryDetailsTemplate" type="text/x-jquery-tmpl">
+            {{wrap "#eventDataTemplate"}}
+                <div>
+                {{if $data.getProperty("surgeon") }}
+                Surgeon: <span class="doctor surgeon">${$data.getProperty("surgeon")}</span><br/>
+                {{/if}}
+
+                {{if $data.getProperty("fellow") }}
+                Fellow: <span class="doctor fellow">${$data.getProperty("fellow")}</span><br/>
+                {{/if}}
+
+                <!--{{if $data.getProperty("resident") }}
+                    {{each $data.getProperty("resident")}}
+                        Resident: <span class="doctor resident">${$value}</span><br/>
+                    {{/each}}
+                {{/if}} -->
+
+                {{if $data.getProperty("physicianAssistant") }}
+                Physician&apos;s Assistant: <span class="physicianAssistant">${$data.getProperty("physicianAssistant")}</span><br/>
+                {{/if}}
+
+                {{if $data.getProperty("hospital") }}
+                Hospital: <span class="hospital">${$data.getProperty("hospital")}</span><br/>
+                {{/if}}
+
+                {{if $data.getProperty("location") }}
+                Location: <span class="location">${$data.getProperty("location")}</span><br/>
+                {{/if}}
+
+                {{if $data.getProperty("recoveryTimeHospital") }}                    
+                Recovery time in hospital: <span class="recoveryTimeHospital">${$data.getProperty("recoveryTimeHospital")}</span><br/>
+                {{/if}}
+
+                {{if $data.getProperty("recoveryTimeHome") }}                    
+                Recovery time at home: <span class="recoveryTime">${$data.getProperty("recoveryTimeHome")}</span><br/>
+                {{/if}}                
+                </div>
+            {{/wrap}}
+        </script>
+
+        <script id="chemoDetailsTemplate" type="text/x-jquery-tmpl">
+            {{wrap "#eventDataTemplate"}}
+                <div>
+                {{if $data.getProperty("oncologist") }}
+                    Oncologist: <span class="oncologist chemo">{{= $data.getProperty("oncologist") }}</span>
+                    <br/>
+                {{/if}}
+                </div>
+            {{/wrap}}
+        </script>
+
+        <script id="radiationDetailsTemplate" type="text/x-jquery-tmpl">
+            {{tmpl "#eventDataTemplate"}}
+        </script>
+
+        <script id="immunoDetailsTemplate" type="text/x-jquery-tmpl">
+            {{tmpl "#eventDataTemplate"}}
+        </script>        
+
+        <script id="testDetailsTemplate" type="text/x-jquery-tmpl">
+            {{tmpl "#eventDataTemplate"}}
+        </script>    
+
+        <script id="diagnosisDetailsTemplate" type="text/x-jquery-tmpl">
+            <li>
+                <h3><a href="${$data.getID()}" class="eventTitle">${_text}</a></h3>
+                <div class="eventContent">          
+                    Diagnosed on: <span class="date">${dateFormat($data.getStart(), "longDate")}</span> {{if $data.getProperty("age") }} at age: {{= $data.getProperty("age") }} {{/if}}
+                    <br/>
+                    {{if $data.getProperty("stage")}}
+                        Stage: {{= $data.getProperty("stage") }}
+                        <br/>
+                    {{/if}}
+
+                    {{if $data.getProperty("metastatic") }}
+                        Metastatic? {{= $data.getProperty("metastatic") }}
+                        <br/>
+                    {{/if}}
+
+                    {{if $data.getProperty("lymphNodes") }}
+                        Lymph Node Involvement? {{= $data.getProperty("lymphNodes") }}
+                        <br/>
+                    {{/if}}
+
+                    {{if $data.getProperty("vascularInvasion") }}
+                        Invasion of Major Blood Vessels? {{= $data.getProperty("vascularInvasion") }}
+                        <br/>
+                    {{/if}} 
+                    
+                    {{if $data.getProperty("microVascularInvastion") }}
+                        Microscopic Vascular Invasion? {{= $data.getProperty("microVascularInvastion") }}
+                        <br/>
+                    {{/if}} 
+
+                    {{if $data.getProperty("diseaseSites")}}
+                            <br/>
+                            Sites of Disease: <br/><br/>
+                            <div class="diseaseSites">
+                                <ol>
+                                    {{each $data.getProperty("diseaseSites")}}
+                                        <li>${$value}</li>
+                                    {{/each}}
+                                </ol>
+                            </div>
+                            <br/>
+                    {{/if}}                     
+
+                    {{if $data.getProperty("description")}}
+                        <div>
+                            <br/>
+                            Details: <br/>
+                            <div class="description">
+                                <p>{{html $data.getProperty("description").replace(/(\n)+/g, "</p><p>").replace(/\t/g, "") }}
+                                </p>
+                            </div>
+                        </div>
+                    {{/if}}                    
+                    <br/>
+                </div>
+            </li>
+        </script>
+
+    </head>
+    <body>
+        <div id="header" class="center ui-widget ui-widget-header ui-corner-all">
+            <ul class="menu noBullets">
+                <li id="about">About</li>
+                <li id="dedication">Dedication</li>
+                <li id="settings">Settings</li>
+            </ul>
+            <ul class="menu noBullets right">
+                <li><a href="https://docs.google.com/spreadsheet/viewform?formkey=dFhmak1rbFVad2xTdVQtWG9RUmNSRGc6MQ" target="_blank">Feedback!!</a></li>
+                <li id="designedBy">Created By: Tal Friedman</li>
+            </ul>
+            <h1 class="title">My Fibrolamellar Story</h1>
+        </div>
+        <div style="height:75px;">
+
+        </div>
+
+        <div id="aboutDialog" class="dialog" title="About This Project">
+<p>This project is about helping patients share their stories with others and gathering information to help our community.</p>
+
+<p>At the center of it all is an interactive timeline.  On the right, you can see  events categorized by type - surgeries, chemos, diagnoses etc.  If you click on the title of the event, it will take you to the event’s location on the timeline.  Below the timeline is a section for the patient to tell their story in detail.  You can click on the titles on the left and the chapter will be visible in the story box and highlighted on the timeline.</p>
+
+<p>This prototype is “based on a true story,” but it’s not 100% accurate.  The treatments, side effects and results are accurate.  The dates may be wrong, but the order of events and their durations are correct.</p>
+
+<p>I’m using aliases for the doctors' names and the hospitals.  The reason for this is that the prototype you’re viewing is LIVE on the Internet-  it’s public so anyone can see it.  I’ve decided (for now) to keep a few things private.</p>
+
+<p>Hope you enjoy it!<br/>Tal</p>
+
+        </div>
+
+        <div id="dedicationDialog" class="dialog" title="Dedication">
+            <pre>
+This site is dedicated to our missing friends 
+    gone but not forgotten
+to the brave fighters we love so dear
+    to mothers, fathers, sisters and brothers, sons and daughters,
+and to all of us who gather to share our stories here.
+            </pre>   
+     
+        </div>
+        <div id="designedByDialog" class="dialog" title="Created By">
+            <div class="TalFriedman">Tal Friedman</div>
+            <div class="role">Builder of Digital Things</div>
+            <p />
+        </div>
+        <div id="settingsDialog" class="dialog" title="Settings">
+           <table>
+                <tr>
+                    <td>Theme: </td>
+                    <td>
+                        <select id="themeSelector">
+                            <option value="default">Default</option>
+                            <option value="indie-green">Indie Green</option>
+                            <option value="indie-blue">Indie Blue</option>
+                            <option value="vader2">Vader 2</option>
+                            <option value="livestrong">Livestrong</option>
+                        </select>
+                    </td>
+                </tr>
+                <!--<tr>
+                    <td></td>
+                    <td><button onclick="$('#settingsDialog').dialog( 'close' );">OK</button>
+                </tr>-->
+            </table>
+        </div>
+        <div id="sidebar">
+        	<div id="eventInfoBox">
+        		<div id="eventInfoTabs" class="tabs">
+        			<ul>
+                        <li><a href="#eventInfoTabs-diagnosis">Diagnoses</a></li>
+        				<li><a href="#eventInfoTabs-surgery" >Surgery</a></li>
+        				<li><a href="#eventInfoTabs-chemotherapy" >Chemo</a></li>
+        				<!--<li><a href="#eventInfoTabs-radiation" >Radiation</a></li>-->
+        				<li><a href="#eventInfoTabs-immunotherapy" >Cell Therapy</a></li>
+        				<li><a href="#eventInfoTabs-test" >Test</a></li>
+        			</ul>
+                    <div class="spacer" style="height: 20px">
+
+                    </div>
+
+                    <div id="eventInfoTabs-diagnosis" class="eventTypeContent diagnosis ">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Diagnoses on Timeline? </span>
+                            <input type="radio" name="diagnosisToggle" id="0_checked" value="show" checked="checked"/>
+                            <label for="0_checked">&#x2714;</label>
+                            <input type="radio" name="diagnosisToggle" id="0_unchecked" value="hide" />
+                            <label for="0_unchecked">&#x2716;</label>
+                        </div>
+                        <ul />
+                    </div>
+
+        			<!--<div id="eventInfoTabs-surgery" class="accordion">-->
+                    <div id="eventInfoTabs-surgery" class="eventTypeContent surgery hidden">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Surgeries on Timeline? </span>
+                            <input type="radio" name="surgeriesToggle" id="1_checked" value="show" checked="checked"/>
+                            <label for="1_checked">&#x2714;</label>
+                            <input type="radio" name="surgeriesToggle" id="1_unchecked" value="hide" />
+                            <label for="1_unchecked">&#x2716;</label>
+                        </div>                      
+                        <ul />
+        			</div>
+        			<div id="eventInfoTabs-chemotherapy" class="eventTypeContent chemo hidden">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Chemotherapies on Timeline? </span>
+                            <input type="radio" name="chemosToggle" id="2_checked" value="show" checked="checked"/>
+                            <label for="2_checked">&#x2714;</label>
+                            <input type="radio" name="chemosToggle" id="2_unchecked" value="hide" />
+                            <label for="2_unchecked">&#x2716;</label>
+                        </div>
+                        <ul />    				
+        			</div>
+        			<div id="eventInfoTabs-radiation" class="eventTypeContent radiation " style="display: none">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Radiation Events on Timeline? </span>
+                            <input type="radio" name="radiationToggle" id="3_checked" value="show" checked="checked"/>
+                            <label for="3_checked">&#x2714;</label>
+                            <input type="radio" name="radiationToggle" id="3_unchecked" value="hide" />
+                            <label for="3_unchecked">&#x2716;</label>                           
+                        </div>
+                        <ul />
+        			</div>
+        			<div id="eventInfoTabs-immunotherapy" class="eventTypeContent immuno ">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Cell Therapies on Timeline ?</span>
+                            <input type="radio" name="immunosToggle" id="4_checked" value="show" checked="checked"/>
+                            <label for="4_checked">&#x2714;</label>
+                            <input type="radio" name="immunosToggle" id="4_unchecked" value="hide" />
+                            <label for="4_unchecked">&#x2716;</label>
+                        </div>
+                        <ul />
+        			</div>
+        			<div id="eventInfoTabs-test" class="eventTypeContent test ">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Tests on Timeline ?</span>
+                            <input type="radio" name="testsToggle" id="5_checked" value="show" checked="checked"/>
+                            <label for="5_checked">&#x2714;</label>
+                            <input type="radio" name="testsToggle" id="5_unchecked" value="hide" />
+                            <label for="5_unchecked">&#x2716;</label>
+                        </div>
+                        <ul />
+        			</div>
+                   <!-- <div id="eventInfoTabs-diagnosis" class="eventTypeContent diagnosis ">
+                        <div class="eventTypeVisibilityToggle">
+                            <span class="visibilityToggleLabel">Show Diagnosis on Timeline</span>
+                            <input type="radio" name="diagnosisToggle" id="6_checked" value="show" checked="checked"/>
+                            <label for="6_checked">&#x2714;</label>
+                            <input type="radio" name="diagnosisToggle" id="6_unchecked" value="hide" />
+                            <label for="6_unchecked">&#x2716;</label>
+                        </div>
+                        <ul />
+                    </div> -->                             			        			 
+        		</div>
+        	</div>
+    	</div>
+        <div id="main">
+            <div id="my-timeline" class="timeline ui-widget ui-widget-content ui-corner-all" style="color: black;"></div>
+            <div id="patientNotesContainer" class="ui-widget ui-widget-content ui-corner-all">
+            </div>
+        </div>
+        <noscript>
+            This page uses Javascript to show you a Timeline. Please enable Javascript in your browser to see the full page. Thank you.
+        </noscript>
+    </body>
+</html>
